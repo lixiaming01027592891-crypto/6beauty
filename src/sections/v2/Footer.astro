@@ -1,0 +1,237 @@
+---
+---
+<section class="v2-footer" id="contact">
+  <!-- CTA -->
+  <div class="v2-footer-cta">
+    <h2 class="v2-footer-cta-title">預約您的美麗時光</h2>
+    <div class="v2-footer-cta-btns">
+      <a href="https://line.me/ti/p/0970177878" target="_blank" rel="noopener" class="v2-footer-btn-primary">
+        LINE 預約
+      </a>
+      <a href="tel:0986132728" class="v2-footer-btn-secondary">
+        電話聯繫
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer Info -->
+  <footer class="v2-footer-info">
+    <div class="v2-footer-inner">
+      <div class="v2-footer-brand">
+        <span class="v2-footer-logo-mark">6</span>
+        <span class="v2-footer-brand-name">六號美容美學</span>
+        <span class="v2-footer-brand-en">NO.6 AESTHETICS</span>
+      </div>
+
+      <div class="v2-footer-details">
+        <div class="v2-footer-col">
+          <p class="v2-footer-label">地址</p>
+          <p class="v2-footer-value">桃園市桃園區南平路 181 巷 6 號 1 樓</p>
+        </div>
+        <div class="v2-footer-col">
+          <p class="v2-footer-label">電話</p>
+          <a href="tel:0986132728" class="v2-footer-value-link">0986-132-728</a>
+        </div>
+        <div class="v2-footer-col">
+          <p class="v2-footer-label">LINE</p>
+          <p class="v2-footer-value">0970177878</p>
+        </div>
+        <div class="v2-footer-col">
+          <p class="v2-footer-label">營業時間</p>
+          <p class="v2-footer-value">每日 09:00-21:00</p>
+          <p class="v2-footer-note">全預約制</p>
+        </div>
+      </div>
+
+      <div class="v2-footer-copyright">
+        &copy; 2024 六號美容美學 NO.6 AESTHETICS. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</section>
+
+<style>
+  .v2-footer {
+    background: var(--v2-dark);
+  }
+  /* CTA Section */
+  .v2-footer-cta {
+    padding: 100px 5vw 80px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .v2-footer-cta.visible {
+    animation: v2-fade-in-up 0.9s ease-out forwards;
+  }
+  .v2-footer-cta-title {
+    font-family: var(--v2-font-serif);
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--v2-light-bg);
+    margin-bottom: 36px;
+    letter-spacing: 0.04em;
+  }
+  .v2-footer-cta-btns {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .v2-footer-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 36px;
+    background: var(--v2-accent);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s ease, opacity 0.3s ease;
+  }
+  .v2-footer-btn-primary:hover {
+    background: #8f6548;
+  }
+  .v2-footer-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 36px;
+    border: 1px solid var(--v2-accent);
+    color: var(--v2-light-bg);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .v2-footer-btn-secondary:hover {
+    background: rgba(166, 123, 91, 0.15);
+  }
+  /* Footer Info */
+  .v2-footer-info {
+    padding: 0 5vw 48px;
+  }
+  .v2-footer-inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .v2-footer-brand {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(248, 240, 237, 0.1);
+  }
+  .v2-footer-logo-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(248, 240, 237, 0.3);
+    border-radius: 50%;
+    font-family: var(--v2-font-serif);
+    font-size: 16px;
+    color: rgba(248, 240, 237, 0.7);
+    margin-bottom: 12px;
+  }
+  .v2-footer-brand-name {
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--v2-light-bg);
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .v2-footer-brand-en {
+    display: block;
+    font-family: var(--v2-font-serif);
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(248, 240, 237, 0.4);
+    letter-spacing: 0.15em;
+  }
+  .v2-footer-details {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  .v2-footer-label {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(248, 240, 237, 0.4);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .v2-footer-value {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(248, 240, 237, 0.75);
+    line-height: 1.6;
+  }
+  .v2-footer-value-link {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(248, 240, 237, 0.75);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .v2-footer-value-link:hover {
+    color: var(--v2-light-bg);
+  }
+  .v2-footer-note {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(248, 240, 237, 0.45);
+    margin-top: 2px;
+  }
+  .v2-footer-copyright {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(248, 240, 237, 0.3);
+    padding-top: 32px;
+    border-top: 1px solid rgba(248, 240, 237, 0.08);
+  }
+  @keyframes v2-fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 768px) {
+    .v2-footer-cta {
+      padding: 72px 6vw 56px;
+    }
+    .v2-footer-cta-title {
+      font-size: 24px;
+      margin-bottom: 28px;
+    }
+    .v2-footer-details {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .v2-footer-info {
+      padding: 0 6vw 40px;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    var section = document.querySelector('.v2-footer');
+    if (!section) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          section.querySelector('.v2-footer-cta').classList.add('visible');
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(section);
+  })();
+</script>

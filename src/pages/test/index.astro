@@ -1,0 +1,102 @@
+---
+import Navigation from '../../sections/v2/Navigation.astro';
+import Hero from '../../sections/v2/Hero.astro';
+import Trust from '../../sections/v2/Trust.astro';
+import Services from '../../sections/v2/Services.astro';
+import About from '../../sections/v2/About.astro';
+import Footer from '../../sections/v2/Footer.astro';
+---
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>六號美容美學｜桃園美容工作室｜清粉刺 撥筋 熱蠟 SPA</title>
+  <meta name="description" content="桃園藝文特區美容工作室，美琪老師20年經驗，提供無痛清粉刺、臉部撥筋、熱蠟除毛、經絡按摩等服務，全預約制。">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <style is:global>
+    /* ===== CSS Variables (strict 8-color palette) ===== */
+    :root {
+      --v2-primary-bg: #D4A5A5;
+      --v2-light-bg: #F8F0ED;
+      --v2-secondary-bg: #F5EDE8;
+      --v2-text: #5C3A2E;
+      --v2-muted-text: #8B6F6F;
+      --v2-accent: #A67B5B;
+      --v2-white: #FFFFFF;
+      --v2-dark: #3D2B1F;
+      --v2-font-serif: 'Playfair Display', 'Georgia', serif;
+      --v2-font-sans: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    }
+
+    /* ===== Reset ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--v2-font-sans);
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--v2-text);
+      background: var(--v2-light-bg);
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: rgba(212, 165, 165, 0.4);
+      color: var(--v2-text);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- 1. Navigation -->
+  <Navigation />
+
+  <!-- 2. Hero -->
+  <Hero />
+
+  <!-- 3. Trust -->
+  <Trust />
+
+  <!-- 4. Services -->
+  <Services />
+
+  <!-- 5. About -->
+  <About />
+
+  <!-- 6. Footer -->
+  <Footer />
+</body>
+</html>

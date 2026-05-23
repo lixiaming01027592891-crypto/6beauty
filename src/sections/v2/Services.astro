@@ -1,0 +1,160 @@
+---
+const services = [
+  {
+    title: '無痛清粉刺',
+    desc: '溫和軟化角質後輕柔清除，過程舒適不紅腫，術後即可上妝出門。',
+  },
+  {
+    title: '臉部撥筋',
+    desc: '以專業手法疏通面部經絡，促進循環，改善暗沉與面部線條。',
+  },
+  {
+    title: '熱蠟除毛',
+    desc: '使用低敏熱蠟連根拔除，肌膚瞬間光滑細緻，效果可維持數週。',
+  },
+  {
+    title: '杏仁酸煥膚',
+    desc: '溫和果酸代謝老廢角質，改善粉刺與膚色不均，讓肌膚透亮有光澤。',
+  },
+  {
+    title: '經絡按摩 SPA',
+    desc: '順著經絡穴位深層紓壓，緩解疲勞緊繃，恢復身心輕盈平衡。',
+  },
+  {
+    title: '美容教學課程',
+    desc: '一對一指導清粉刺與護膚手法，適合想學習專業技術的學員。',
+  },
+];
+---
+
+<section class="v2-services" id="services">
+  <div class="v2-services-inner">
+    <h2 class="v2-services-title">服務項目</h2>
+    <p class="v2-services-intro">六號美容美學提供多樣化專業服務，依您的需求量身規劃。</p>
+
+    <div class="v2-services-grid">
+      {services.map((s, i) => (
+        <div class="v2-service-card" data-index={i}>
+          <h3 class="v2-service-name">{s.title}</h3>
+          <p class="v2-service-desc">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .v2-services {
+    background: var(--v2-secondary-bg);
+    padding: 100px 5vw 120px;
+  }
+  .v2-services-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .v2-services-title {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--v2-text);
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .v2-services-title.visible {
+    animation: v2-fade-in-up 0.8s ease-out forwards;
+  }
+  .v2-services-intro {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--v2-muted-text);
+    text-align: center;
+    margin-bottom: 64px;
+    line-height: 1.75;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .v2-services-intro.visible {
+    animation: v2-fade-in-up 0.8s ease-out 0.15s forwards;
+  }
+  .v2-services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .v2-service-card {
+    background: var(--v2-light-bg);
+    border-radius: 8px;
+    padding: 40px 32px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: filter 0.4s ease;
+  }
+  .v2-service-card.visible {
+    animation: v2-fade-in-up 0.8s ease-out forwards;
+  }
+  .v2-service-card:hover {
+    filter: brightness(1.03);
+  }
+  .v2-service-name {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--v2-accent);
+    margin-bottom: 14px;
+    letter-spacing: 0.02em;
+  }
+  .v2-service-desc {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--v2-muted-text);
+  }
+  @keyframes v2-fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 1024px) {
+    .v2-services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 640px) {
+    .v2-services {
+      padding: 72px 6vw 88px;
+    }
+    .v2-services-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .v2-service-card {
+      padding: 32px 24px;
+    }
+    .v2-services-intro {
+      margin-bottom: 40px;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    var section = document.querySelector('.v2-services');
+    if (!section) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          section.querySelector('.v2-services-title').classList.add('visible');
+          section.querySelector('.v2-services-intro').classList.add('visible');
+          section.querySelectorAll('.v2-service-card').forEach(function(card, i) {
+            card.style.animationDelay = (i * 0.15) + 's';
+            card.classList.add('visible');
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(section);
+  })();
+</script>

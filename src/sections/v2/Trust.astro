@@ -1,0 +1,109 @@
+---
+---
+<section class="v2-trust">
+  <div class="v2-trust-inner">
+    <div class="v2-trust-item">
+      <svg class="v2-trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="5"/>
+        <path d="M20 21a8 8 0 0 0-16 0"/>
+      </svg>
+      <p class="v2-trust-label">美琪老師 20 年經驗</p>
+    </div>
+    <div class="v2-trust-divider"></div>
+    <div class="v2-trust-item">
+      <svg class="v2-trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      <p class="v2-trust-label">全預約制（不接散客）</p>
+    </div>
+    <div class="v2-trust-divider"></div>
+    <div class="v2-trust-item">
+      <svg class="v2-trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+      <p class="v2-trust-label">桃園藝文特區</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .v2-trust {
+    background: var(--v2-light-bg);
+    padding: 48px 5vw;
+  }
+  .v2-trust-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+  }
+  .v2-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .v2-trust-item.visible {
+    animation: v2-fade-in-up 0.8s ease-out forwards;
+  }
+  .v2-trust-item:nth-child(1).visible { animation-delay: 0ms; }
+  .v2-trust-item:nth-child(3).visible { animation-delay: 150ms; }
+  .v2-trust-item:nth-child(5).visible { animation-delay: 300ms; }
+  .v2-trust-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--v2-muted-text);
+    flex-shrink: 0;
+  }
+  .v2-trust-label {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--v2-muted-text);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .v2-trust-divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(139, 111, 111, 0.2);
+    flex-shrink: 0;
+  }
+  @media (max-width: 768px) {
+    .v2-trust-inner {
+      flex-direction: column;
+      gap: 24px;
+    }
+    .v2-trust-divider {
+      width: 40px;
+      height: 1px;
+    }
+    .v2-trust-label {
+      white-space: normal;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    var section = document.querySelector('.v2-trust');
+    if (!section) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          section.querySelectorAll('.v2-trust-item').forEach(function(item) {
+            item.classList.add('visible');
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(section);
+  })();
+</script>

@@ -1,0 +1,85 @@
+---
+---
+<section class="v2-hero" id="hero">
+  <div class="v2-hero-inner">
+    <p class="v2-hero-eyebrow">NO.6 AESTHETICS</p>
+    <h1 class="v2-hero-title">六號美容美學</h1>
+    <p class="v2-hero-subtitle">讓每一位顧客都是獨一無二的美麗故事</p>
+    <a href="https://line.me/ti/p/0970177878" target="_blank" rel="noopener" class="v2-hero-cta">
+      預約諮詢
+    </a>
+  </div>
+</section>
+
+<style>
+  .v2-hero {
+    min-height: 85vh;
+    background: var(--v2-primary-bg);
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+  }
+  .v2-hero-inner {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 5vw 12vh;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: v2-fade-in-up 1s ease-out 0.2s forwards;
+  }
+  .v2-hero-eyebrow {
+    font-family: var(--v2-font-serif);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: rgba(92, 58, 46, 0.5);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .v2-hero-title {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    line-height: 1.3;
+    color: var(--v2-text);
+    margin-bottom: 16px;
+    letter-spacing: 0.04em;
+  }
+  .v2-hero-subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--v2-muted-text);
+    margin-bottom: 40px;
+    max-width: 420px;
+  }
+  .v2-hero-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 40px;
+    background: var(--v2-accent);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s ease, opacity 0.3s ease;
+  }
+  .v2-hero-cta:hover {
+    background: #8f6548;
+  }
+  @keyframes v2-fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 768px) {
+    .v2-hero-inner {
+      padding: 0 6vw 10vh;
+    }
+    .v2-hero-subtitle {
+      max-width: 100%;
+    }
+  }
+</style>

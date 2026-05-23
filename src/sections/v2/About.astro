@@ -1,0 +1,103 @@
+---
+---
+<section class="v2-about" id="about">
+  <div class="v2-about-inner">
+    <!-- 美琪老師照片 -->
+    <div class="v2-about-img-wrap">
+      <img src="/images/v2-about.jpg" alt="美琪老師 - 六號美容美學專業美容師" class="v2-about-img" />
+    </div>
+
+    <!-- Text -->
+    <div class="v2-about-text">
+      <h2 class="v2-about-title">關於美琪老師</h2>
+      <p class="v2-about-body">
+        文案 placeholder — 客戶後補。美琪老師從事美容護理工作已逾二十年，累積了豐富的實務經驗。她專注於傾聽每一位顧客的肌膚需求，從清粉刺到深層護理，皆以細膩手法與溫和態度完成。工作室採全預約制，確保每位客人都能獲得安心、專屬的服務時光。
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .v2-about {
+    background: var(--v2-light-bg);
+    padding: 100px 5vw 120px;
+  }
+  .v2-about-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .v2-about-img-wrap {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .v2-about-img-wrap.visible {
+    animation: v2-fade-in-up 0.9s ease-out forwards;
+  }
+  .v2-about-img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 8px;
+    filter: brightness(1.02);
+  }
+  .v2-about-text {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .v2-about-text.visible {
+    animation: v2-fade-in-up 0.9s ease-out 0.15s forwards;
+  }
+  .v2-about-title {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--v2-text);
+    margin-bottom: 24px;
+    letter-spacing: 0.04em;
+  }
+  .v2-about-body {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--v2-muted-text);
+  }
+  @keyframes v2-fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 768px) {
+    .v2-about {
+      padding: 72px 6vw 88px;
+    }
+    .v2-about-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .v2-about-img-wrap {
+      max-width: 320px;
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    var section = document.querySelector('.v2-about');
+    if (!section) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          section.querySelector('.v2-about-img-wrap').classList.add('visible');
+          section.querySelector('.v2-about-text').classList.add('visible');
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+    observer.observe(section);
+  })();
+</script>

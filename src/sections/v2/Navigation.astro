@@ -1,0 +1,223 @@
+---
+---
+<nav class="v2-nav" id="v2-nav">
+  <div class="v2-nav-inner">
+    <!-- Logo -->
+    <a href="/test/" class="v2-logo">
+      <span class="v2-logo-mark">6</span>
+      <span class="v2-logo-text">六號美容美學</span>
+    </a>
+
+    <!-- Desktop Menu -->
+    <div class="v2-menu">
+      <a href="#about" class="v2-menu-link">關於</a>
+      <a href="#services" class="v2-menu-link">服務</a>
+      <a href="#contact" class="v2-menu-link">聯絡</a>
+    </div>
+
+    <!-- CTA -->
+    <a href="https://line.me/ti/p/0970177878" target="_blank" rel="noopener" class="v2-nav-cta">
+      LINE 預約
+    </a>
+
+    <!-- Mobile Hamburger -->
+    <button class="v2-hamburger" id="v2-hamburger" aria-label="選單">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="v2-mobile-menu" id="v2-mobile-menu">
+    <a href="#about" class="v2-mobile-link">關於</a>
+    <a href="#services" class="v2-mobile-link">服務</a>
+    <a href="#contact" class="v2-mobile-link">聯絡</a>
+    <a href="https://line.me/ti/p/0970177878" target="_blank" rel="noopener" class="v2-mobile-cta">LINE 預約</a>
+  </div>
+</nav>
+
+<style>
+  .v2-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: var(--v2-light-bg);
+    transition: box-shadow 0.4s ease;
+  }
+  .v2-nav.scrolled {
+    box-shadow: 0 1px 12px rgba(92, 58, 46, 0.06);
+  }
+  .v2-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5vw;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .v2-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .v2-logo-mark {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid var(--v2-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--v2-font-serif);
+    font-size: 16px;
+    color: var(--v2-accent);
+    font-weight: 400;
+  }
+  .v2-logo-text {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--v2-text);
+    letter-spacing: 0.05em;
+  }
+  .v2-menu {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  .v2-menu-link {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--v2-muted-text);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+  .v2-menu-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--v2-accent);
+    transition: width 0.3s ease;
+  }
+  .v2-menu-link:hover {
+    color: var(--v2-accent);
+  }
+  .v2-menu-link:hover::after {
+    width: 100%;
+  }
+  .v2-nav-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 22px;
+    background: var(--v2-accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s ease, opacity 0.3s ease;
+  }
+  .v2-nav-cta:hover {
+    background: #8f6548;
+  }
+  .v2-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .v2-hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--v2-text);
+    transition: all 0.3s ease;
+  }
+  .v2-mobile-menu {
+    display: none;
+    flex-direction: column;
+    padding: 20px 5vw 30px;
+    background: var(--v2-light-bg);
+    border-top: 1px solid rgba(139, 111, 111, 0.12);
+  }
+  .v2-mobile-menu.open {
+    display: flex;
+  }
+  .v2-mobile-link {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--v2-text);
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(139, 111, 111, 0.08);
+    transition: color 0.3s ease;
+  }
+  .v2-mobile-link:hover {
+    color: var(--v2-accent);
+  }
+  .v2-mobile-cta {
+    margin-top: 16px;
+    padding: 12px;
+    background: var(--v2-accent);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    letter-spacing: 0.06em;
+  }
+  @media (max-width: 768px) {
+    .v2-menu, .v2-nav-cta { display: none; }
+    .v2-hamburger { display: flex; }
+  }
+</style>
+
+<script>
+  (function() {
+    var nav = document.getElementById('v2-nav');
+    var btn = document.getElementById('v2-hamburger');
+    var menu = document.getElementById('v2-mobile-menu');
+    if (!nav || !btn || !menu) return;
+    
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+    
+    btn.addEventListener('click', function() {
+      menu.classList.toggle('open');
+      var spans = btn.querySelectorAll('span');
+      if (menu.classList.contains('open')) {
+        spans[0].style.transform = 'rotate(45deg) translate(4.5px, 4.5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(4.5px, -4.5px)';
+      } else {
+        spans[0].style.transform = '';
+        spans[1].style.opacity = '';
+        spans[2].style.transform = '';
+      }
+    });
+    
+    menu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menu.classList.remove('open');
+        btn.querySelectorAll('span').forEach(function(s, i) {
+          s.style.transform = ''; s.style.opacity = '';
+        });
+      });
+    });
+  })();
+</script>
