@@ -1,0 +1,148 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  publishDate?: string;
+  coverImage?: string;
+}
+
+const { title, description, publishDate, coverImage } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={description || "六號美容美學 - 桃園專業美容護膚SPA，專業團隊20年經驗"}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>{title} | 六號美容美學 No.6 Aesthetics</title>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-lg shadow-sm">
+    <div class="section-container flex items-center justify-between h-20">
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 border border-rose/60 rounded-full flex items-center justify-center group-hover:border-rose-dark group-hover:bg-rose transition-colors duration-300">
+          <span class="text-rose font-serif text-lg group-hover:text-white transition-colors duration-300">6</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-brown text-sm tracking-ultra-wide font-medium group-hover:text-rose transition-colors duration-300">六號美容美學</span>
+          <span class="text-brown-muted text-[10px] tracking-ultra-wide uppercase">No.6 Aesthetics</span>
+        </div>
+      </a>
+      <div class="hidden lg:flex items-center gap-10">
+        <a href="/" class="text-brown-light text-xs tracking-ultra-wide uppercase hover:text-rose transition-colors duration-300">首頁</a>
+        <a href="/#services" class="text-brown-light text-xs tracking-ultra-wide uppercase hover:text-rose transition-colors duration-300">服務項目</a>
+        <a href="/blog" class="text-rose text-xs tracking-ultra-wide uppercase font-medium">美容知識</a>
+        <a href="/" class="text-brown-light text-xs tracking-ultra-wide uppercase hover:text-rose transition-colors duration-300">關於六號</a>
+        <a href="/" class="text-brown-light text-xs tracking-ultra-wide uppercase hover:text-rose transition-colors duration-300">聯絡我們</a>
+      </div>
+      <a href="/" class="btn-solid hidden lg:inline-block">立即預約</a>
+      <a href="/" class="lg:hidden text-brown-light text-xs tracking-ultra-wide uppercase">回首頁</a>
+    </div>
+  </nav>
+
+  <!-- Spacer for fixed nav -->
+  <div class="h-20"></div>
+
+  <!-- Cover Image (if provided) -->
+  {coverImage && (
+    <div class="w-full h-[40vh] md:h-[50vh] overflow-hidden">
+      <img src={coverImage} alt={title} class="w-full h-full object-cover" />
+    </div>
+  )}
+
+  <!-- Main Content -->
+  <main class="bg-cream min-h-screen">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative w-full bg-rose-dark">
+    <div class="section-container py-12">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 border border-white/40 rounded-full flex items-center justify-center">
+            <span class="text-white font-serif text-sm">6</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-white text-sm tracking-ultra-wide font-medium">六號美容美學</span>
+            <span class="text-white/60 text-[10px] tracking-ultra-wide uppercase">No.6 Aesthetics</span>
+          </div>
+        </div>
+        <div class="flex gap-6 text-white/60 text-xs tracking-ultra-wide uppercase">
+          <a href="/" class="hover:text-white transition-colors">首頁</a>
+          <a href="/#services" class="hover:text-white transition-colors">服務項目</a>
+          <a href="/blog" class="hover:text-white transition-colors">美容知識</a>
+          <a href="/#contact" class="hover:text-white transition-colors">聯絡預約</a>
+        </div>
+        <p class="text-white/40 text-xs">&copy; 2024 六號美容美學. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+
+  /* Blog article styles */
+  .blog-article h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: #4A3530;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+  .blog-article h2 {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #4A3530;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #E8D5CC;
+  }
+  .blog-article h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #B88072;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .blog-article p {
+    color: #8C7B75;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+  .blog-article ul, .blog-article ol {
+    color: #8C7B75;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  .blog-article li {
+    margin-bottom: 0.5rem;
+  }
+  .blog-article strong {
+    color: #4A3530;
+    font-weight: 500;
+  }
+  .blog-article blockquote {
+    border-left: 3px solid #B88072;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    color: #6B534D;
+    font-style: italic;
+  }
+  .blog-article img {
+    border-radius: 1rem;
+    margin: 2rem 0;
+  }
+</style>

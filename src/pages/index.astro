@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import SideContact from '../components/SideContact.astro';
+import Hero from '../sections/Hero.astro';
+import Services from '../sections/Services.astro';
+import Features from '../sections/Features.astro';
+import About from '../sections/About.astro';
+import Contact from '../sections/Contact.astro';
+import Footer from '../sections/Footer.astro';
+---
+
+<Layout title="六號美容美學 No.6 Aesthetics | 桃園專業美容護膚SPA">
+  <!-- Navigation -->
+  <Navigation />
+  
+  <!-- Fixed Side Contact Buttons -->
+  <SideContact />
+  
+  <!-- Main Content -->
+  <main>
+    <Hero />
+    <Services />
+    <Features />
+    <About />
+    <Contact />
+  </main>
+  
+  <!-- Footer -->
+  <Footer />
+</Layout>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

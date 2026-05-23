@@ -1,0 +1,92 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+// Generate all static paths from blog markdown files
+export async function getStaticPaths() {
+  const posts = await Astro.glob('../../content/blog/*.md');
+  
+  return posts.map(post => {
+    const slug = post.file.split('/').pop().replace('.md', '');
+    return {
+      params: { slug },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const { Content } = post;
+const fm = post.frontmatter;
+
+// Format date
+function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<BlogLayout 
+  title={fm.title} 
+  description={fm.description}
+  publishDate={fm.publishDate}
+  coverImage={fm.coverImage}
+>
+  <!-- Article Header -->
+  <section class="pt-8 pb-12 md:pb-16 bg-cream">
+    <div class="section-container max-w-[800px]">
+      <!-- Breadcrumb -->
+      <nav class="mb-8">
+        <ol class="flex items-center gap-2 text-xs tracking-ultra-wide uppercase">
+          <li><a href="/" class="text-brown-muted hover:text-rose transition-colors">首頁</a></li>
+          <li class="text-brown-muted/40">/</li>
+          <li><a href="/blog" class="text-brown-muted hover:text-rose transition-colors">美容知識</a></li>
+          <li class="text-brown-muted/40">/</li>
+          <li class="text-rose">{fm.title}</li>
+        </ol>
+      </nav>
+
+      <!-- Tags -->
+      <div class="flex flex-wrap gap-2 mb-4">
+        {fm.tags?.map(tag => (
+          <span class="text-rose/70 text-[10px] tracking-ultra-wide uppercase bg-rose/5 px-3 py-1 rounded-full">
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <!-- Title -->
+      <h1 class="font-serif text-brown text-3xl md:text-4xl lg:text-5xl font-light leading-tight mb-4">
+        {fm.title}
+      </h1>
+
+      <!-- Meta -->
+      <div class="flex items-center gap-4 text-brown-muted/60 text-sm mb-8">
+        <span>{formatDate(fm.publishDate)}</span>
+        <span>·</span>
+        <span>六號美容美學</span>
+      </div>
+
+      <!-- Article intro line -->
+      <div class="w-16 h-px bg-rose/30 mb-8"></div>
+    </div>
+  </section>
+
+  <!-- Article Content -->
+  <article class="pb-20 bg-cream">
+    <div class="section-container max-w-[800px] blog-article">
+      <Content />
+    </div>
+  </article>
+
+  <!-- Related CTA -->
+  <section class="py-16 bg-cream-dark border-t border-cream-deeper">
+    <div class="section-container max-w-[800px] text-center">
+      <p class="text-brown-muted text-lg font-light mb-2">喜歡這篇文章嗎？</p>
+      <p class="text-brown-muted/60 text-sm mb-8">歡迎分享給身邊的朋友，或預約體驗我們的專業服務</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/" class="btn-solid">立即預約</a>
+        <a href="/blog" class="btn-primary">查看更多文章</a>
+      </div>
+    </div>
+  </section>
+</BlogLayout>

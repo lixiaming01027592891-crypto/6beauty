@@ -1,0 +1,105 @@
+---
+const features = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
+    title: '微調',
+    subtitle: '更美更自然',
+    english: 'Natural',
+    description: '依據個人膚質狀況，量身訂製最適合的護理方案。不過度、不勉強，讓美麗自然呈現。',
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>`,
+    title: '變美',
+    subtitle: '可以不忍痛',
+    english: 'Painlessly',
+    description: '獨家無痛清粉刺技術，專業手法讓您在舒適的過程中完成護理，告別傳統美容的疼痛恐懼。',
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    title: '頂級',
+    subtitle: '專業美容技術',
+    english: 'Premium',
+    description: '專業團隊20年以上美容經驗，持續進修國際最新技術。採用優質保養產品，確保最佳效果。',
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+    title: '美麗',
+    subtitle: '從細節開始',
+    english: 'Detail',
+    description: '從預約諮詢到療程後的肌膚追蹤，每一個環節都用心把關。因為對細節的堅持，效果才會這麼好。',
+  },
+];
+---
+
+<section id="features" class="relative w-full py-24 md:py-32 bg-cream-dark overflow-hidden">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-[0.03]">
+    <div class="absolute top-0 left-0 w-full h-full" style="background-image: radial-gradient(circle at 1px 1px, #B88072 1px, transparent 0); background-size: 40px 40px;"></div>
+  </div>
+
+  <div class="section-container relative z-10">
+    <!-- Section Header -->
+    <div class="text-center mb-16 md:mb-24">
+      <p class="text-rose text-xs tracking-ultra-wide uppercase mb-4">Why Choose Us</p>
+      <h2 class="font-serif text-brown text-4xl md:text-5xl lg:text-6xl font-light mb-6">
+        六號的堅持
+      </h2>
+      <p class="text-brown-muted text-base max-w-lg mx-auto">
+        20年來，我們始終堅持對美的追求與對顧客的承諾
+      </p>
+    </div>
+
+    <!-- Feature Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      {features.map((feature, index) => (
+        <div 
+          class="feature-card group relative bg-white border border-cream-deeper p-8 rounded-2xl hover:shadow-lg hover:border-rose/20 transition-all duration-500"
+          data-index={index}
+        >
+          <!-- Icon -->
+          <div class="text-rose mb-6 group-hover:scale-110 transition-transform duration-300">
+            <Fragment set:html={feature.icon} />
+          </div>
+          
+          <!-- Content -->
+          <h3 class="text-brown text-2xl font-light mb-1">{feature.title}</h3>
+          <p class="text-brown-light text-sm mb-2">{feature.subtitle}</p>
+          <p class="text-rose/60 text-xs tracking-ultra-wide uppercase mb-4">{feature.english}</p>
+          
+          <!-- Divider -->
+          <div class="w-8 h-px bg-rose/30 mb-4 group-hover:w-16 transition-all duration-500"></div>
+          
+          <!-- Description -->
+          <p class="text-brown-muted text-sm font-light leading-relaxed">
+            {feature.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.utils.toArray('.feature-card').forEach((card, i) => {
+        gsap.fromTo(card, 
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            delay: i * 0.15,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            }
+          }
+        );
+      });
+    }
+  });
+</script>

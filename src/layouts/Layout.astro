@@ -1,0 +1,47 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "六號美容美學 - 桃園專業美容護膚SPA，專業團隊20年經驗，提供無痛清粉刺、臉部護理、熱蠟除毛、孕婦護理等服務" } = Astro.props;
+const ogImage = "https://i6fgdac5iquh6.kimi.page/images/og-image.jpg";
+const siteUrl = "https://i6fgdac5iquh6.kimi.page";
+---
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={description}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <!-- OG Meta Tags -->
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={siteUrl}>
+  <meta property="og:image" content={ogImage}>
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:site_name" content="六號美容美學 No.6 Aesthetics">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImage}>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>6</text></svg>">
+  
+  <title>{title}</title>
+</head>
+<body>
+  <slot />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</body>
+</html>

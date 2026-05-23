@@ -1,0 +1,104 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+// Read all blog posts from content directory
+const posts = await Astro.glob('../../content/blog/*.md');
+
+// Sort by publish date (newest first)
+const sortedPosts = posts.sort((a, b) => {
+  const dateA = new Date(a.frontmatter.publishDate);
+  const dateB = new Date(b.frontmatter.publishDate);
+  return dateB - dateA;
+});
+
+// Format date helper
+function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+// Generate slug from file path
+function getSlug(filePath) {
+  return filePath.split('/').pop().replace('.md', '');
+}
+---
+
+<BlogLayout title="美容知識 Blog" description="六號美容美學的專業美容知識分享，從無痛清粉刺到孕婦護理的完整指南">
+  <!-- Hero Section -->
+  <section class="relative py-20 md:py-28 bg-cream-dark overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.03]">
+      <div class="absolute top-0 left-0 w-full h-full" style="background-image: radial-gradient(circle at 1px 1px, #B88072 1px, transparent 0); background-size: 40px 40px;"></div>
+    </div>
+    <div class="section-container relative z-10 text-center">
+      <p class="text-rose text-xs tracking-ultra-wide uppercase mb-4">Beauty Knowledge</p>
+      <h1 class="font-serif text-brown text-4xl md:text-5xl lg:text-6xl font-light mb-6">
+        美容知識
+      </h1>
+      <p class="text-brown-muted text-base max-w-lg mx-auto">
+        專業團隊分享專業美容知識，讓您更了解自己的肌膚
+      </p>
+    </div>
+  </section>
+
+  <!-- Blog Post Grid -->
+  <section class="py-16 md:py-24 bg-cream">
+    <div class="section-container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {sortedPosts.map((post, index) => (
+          <a 
+            href={`/blog/${getSlug(post.file)}`}
+            class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 border border-cream-deeper"
+          >
+            <!-- Cover Image -->
+            <div class="aspect-[16/10] overflow-hidden">
+              <img 
+                src={post.frontmatter.coverImage} 
+                alt={post.frontmatter.title}
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading={index < 3 ? "eager" : "lazy"}
+              />
+            </div>
+            
+            <!-- Content -->
+            <div class="p-6">
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-2 mb-3">
+                {post.frontmatter.tags?.map(tag => (
+                  <span class="text-rose/70 text-[10px] tracking-ultra-wide uppercase bg-rose/5 px-3 py-1 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              
+              <!-- Title -->
+              <h2 class="text-brown text-xl font-light mb-3 group-hover:text-rose transition-colors duration-300 line-clamp-2">
+                {post.frontmatter.title}
+              </h2>
+              
+              <!-- Description -->
+              <p class="text-brown-muted text-sm font-light line-clamp-3 mb-4">
+                {post.frontmatter.description}
+              </p>
+              
+              <!-- Date & Read More -->
+              <div class="flex items-center justify-between pt-4 border-t border-cream-deeper">
+                <span class="text-brown-muted/60 text-xs">{formatDate(post.frontmatter.publishDate)}</span>
+                <span class="text-rose text-xs tracking-ultra-wide uppercase group-hover:tracking-[0.15em] transition-all duration-300">
+                  READ MORE +
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-cream-dark">
+    <div class="section-container text-center">
+      <p class="text-brown-muted text-base mb-6">想要了解更多適合您的護理方案嗎？</p>
+      <a href="/" class="btn-solid inline-block">立即預約諮詢</a>
+    </div>
+  </section>
+</BlogLayout>

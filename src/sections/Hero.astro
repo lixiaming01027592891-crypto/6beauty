@@ -1,0 +1,68 @@
+---
+import FluidCanvas from '../components/FluidCanvas.astro';
+---
+
+<section id="hero" class="relative w-full h-screen overflow-hidden">
+  <!-- Background Image Layer -->
+  <div class="absolute inset-0 z-0">
+    <img 
+      src="/images/hero-bg.jpg" 
+      alt="六號美容美學 - 專業美容護膚"
+      class="w-full h-full object-cover object-center"
+      loading="eager"
+    />
+  </div>
+  
+  <!-- Interactive Fluid Overlay -->
+  <FluidCanvas />
+  
+  <!-- Gradient Overlay for Text Readability -->
+  <!-- Left-to-right: heavy cream overlay on text side, clear on image side -->
+  <div class="absolute inset-0 z-[5] bg-gradient-to-r from-cream/90 via-cream/70 to-transparent"></div>
+  <!-- Top-to-bottom: subtle cream overlay -->
+  <div class="absolute inset-0 z-[5] bg-gradient-to-t from-cream/70 via-cream/20 to-cream/40"></div>
+  <!-- Center radial glow for text area -->
+  <div class="absolute inset-0 z-[5]" style="background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(250,246,243,0.5) 0%, transparent 70%);"></div>
+  
+  <!-- Content Overlay -->
+  <div class="absolute inset-0 flex items-center justify-center z-10">
+    <div class="section-container text-center">
+      <!-- Decorative Line -->
+      <div class="w-px h-16 bg-gradient-to-b from-transparent via-rose to-transparent mx-auto mb-8 opacity-60"></div>
+      
+      <!-- Subtitle -->
+      <p class="text-rose text-xs tracking-ultra-wide uppercase mb-6 opacity-0 animate-slide-up" style="animation-delay: 0.3s; animation-fill-mode: forwards;">
+        No.6 Aesthetics &amp; Spa
+      </p>
+      
+      <!-- Main Title -->
+      <h1 class="font-serif text-brown text-5xl md:text-7xl lg:text-8xl font-light leading-tight mb-6 opacity-0 animate-slide-up" style="animation-delay: 0.6s; animation-fill-mode: forwards; text-shadow: 0 2px 20px rgba(250,246,243,0.8), 0 0 40px rgba(250,246,243,0.4);">
+        六號美容美學
+      </h1>
+      
+      <!-- Description -->
+      <p class="text-brown text-base md:text-lg font-light max-w-xl mx-auto mb-4 opacity-0 animate-slide-up" style="animation-delay: 0.9s; animation-fill-mode: forwards; text-shadow: 0 1px 10px rgba(250,246,243,0.9);">
+        讓每一位顧客都是獨一無二的美麗故事
+      </p>
+      
+      <p class="text-brown-light text-sm font-light max-w-lg mx-auto mb-12 opacity-0 animate-slide-up" style="animation-delay: 1.1s; animation-fill-mode: forwards; text-shadow: 0 1px 8px rgba(250,246,243,0.9);">
+        專業團隊 20年專業經驗 · 全預約制 · 桃園藝文特區
+      </p>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center opacity-0 animate-slide-up" style="animation-delay: 1.4s; animation-fill-mode: forwards;">
+        <a href="#services" class="btn-solid">探索服務</a>
+        <a href="#contact" class="border border-brown text-brown bg-transparent px-12 py-4 text-xs tracking-ultra-wide uppercase hover:bg-brown hover:text-white transition-all duration-300">立即預約</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bottom Gradient (seamless transition to next section) -->
+  <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-cream to-transparent z-10"></div>
+  
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-0 animate-fade-in" style="animation-delay: 2s; animation-fill-mode: forwards;">
+    <span class="text-brown-muted text-[10px] tracking-ultra-wide uppercase">Scroll</span>
+    <div class="w-px h-8 bg-gradient-to-b from-rose/60 to-transparent"></div>
+  </div>
+</section>

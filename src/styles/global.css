@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@300;400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Noto Sans TC', 'PingFang TC', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+    color: #4A3530;
+    background-color: #FAF6F3;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #B88072;
+    color: #FFFFFF;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply border border-rose text-rose bg-transparent px-12 py-4 text-xs tracking-ultra-wide uppercase transition-all duration-300;
+  }
+  
+  .btn-primary:hover {
+    @apply bg-rose text-white;
+  }
+
+  .btn-accent {
+    @apply bg-rose text-white px-12 py-4 text-xs tracking-ultra-wide uppercase transition-all duration-300;
+  }
+  
+  .btn-accent:hover {
+    @apply bg-rose-dark;
+  }
+
+  .btn-solid {
+    @apply bg-rose text-white px-10 py-4 text-sm tracking-wide rounded-full transition-all duration-300 shadow-md;
+  }
+  
+  .btn-solid:hover {
+    @apply bg-rose-dark shadow-lg;
+  }
+
+  .section-container {
+    @apply max-w-[1440px] mx-auto px-[5vw];
+  }
+
+  .section-cream {
+    @apply bg-cream;
+  }
+  
+  .section-rose {
+    @apply bg-rose;
+  }
+  
+  .section-cream-dark {
+    @apply bg-cream-dark;
+  }
+}
+
+@layer utilities {
+  .text-shadow-soft {
+    text-shadow: 0 2px 10px rgba(74, 53, 48, 0.1);
+  }
+}

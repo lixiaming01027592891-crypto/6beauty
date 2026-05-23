@@ -1,0 +1,151 @@
+---
+const services = [
+  {
+    title: '臉部護理',
+    subtitle: '無痛清粉刺 · 煥膚',
+    description: '專業無痛清粉刺技術，搭配臉部撥筋與修眉，讓肌膚重現光彩。提供杏仁酸煥膚、藻針換膚等進階療程。',
+    image: '/images/service-facial.jpg',
+    tag: '人氣療程',
+  },
+  {
+    title: '身體 SPA',
+    subtitle: '經絡按摩 · 精油護理',
+    description: '八輪深層經絡護理、芳療輕柔SPA，改善手腳冰冷與身心疲憊。使用微克詩精油，讓您徹底放鬆。',
+    image: '/images/service-spa.jpg',
+    tag: '舒壓首選',
+  },
+  {
+    title: '熱蠟除毛',
+    subtitle: '女士除毛 · 私密處',
+    description: '專業熱蠟美肌除毛，腋下與私密處護理，讓肌膚光滑細緻，告別惱人毛髮。',
+    image: '/images/service-waxing.jpg',
+    tag: '精緻護理',
+  },
+  {
+    title: '敏感肌修護',
+    subtitle: '孕婦護理 · 修復',
+    description: '針對敏感肌膚的專業修護療程，孕婦專屬舒壓課程，使用溫和產品，安全無慮。',
+    image: '/images/service-skincare.jpg',
+    tag: '溫和專業',
+  },
+  {
+    title: '孕婦護理',
+    subtitle: '孕婦做臉 · 舒壓',
+    description: '專為準媽媽設計的安全護理課程，孕婦專屬舒壓與肌膚保養，讓孕期也能美麗動人。',
+    image: '/images/service-prenatal.jpg',
+    tag: '準媽媽專屬',
+  },
+];
+---
+
+<section id="services" class="relative w-full py-24 md:py-32 bg-white overflow-hidden">
+  <!-- Section Header -->
+  <div class="section-container mb-16 md:mb-24">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+      <div>
+        <p class="text-rose text-xs tracking-ultra-wide uppercase mb-4">Services</p>
+        <h2 class="font-serif text-brown text-4xl md:text-5xl lg:text-6xl font-light">
+          服務項目
+        </h2>
+        <p class="text-brown-muted text-base mt-4 max-w-md">
+          專業美容團隊，為您量身打造最適合的護理療程
+        </p>
+      </div>
+      <a href="#contact" class="btn-solid self-start md:self-auto">查看全部服務</a>
+    </div>
+  </div>
+
+  <!-- Service Cards -->
+  <div class="section-container">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {services.map((service, index) => (
+        <div 
+          class={`service-card group relative overflow-hidden cursor-pointer rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-500 ${index === 0 ? 'md:col-span-2 lg:col-span-2' : ''}`}
+          data-index={index}
+        >
+          <!-- Image -->
+          <div class="relative aspect-[3/4] overflow-hidden rounded-2xl">
+            <img 
+              src={service.image} 
+              alt={service.title}
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+            />
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-brown/90 via-brown/30 to-transparent rounded-2xl"></div>
+            
+            <!-- Tag -->
+            <div class="absolute top-4 left-4">
+              <span class="bg-rose text-white text-[10px] tracking-ultra-wide uppercase px-4 py-2 rounded-full">
+                {service.tag}
+              </span>
+            </div>
+            
+            <!-- Content -->
+            <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+              <p class="text-white/60 text-xs tracking-ultra-wide uppercase mb-2">{service.subtitle}</p>
+              <h3 class="text-white text-2xl md:text-3xl font-light mb-3">{service.title}</h3>
+              <p class="text-white/70 text-sm font-light leading-relaxed mb-4 line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
+                {service.description}
+              </p>
+              <div class="flex items-center gap-2 text-rose-light text-xs tracking-ultra-wide uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+                <span>DETAIL VIEW +</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Dual CTA Bar -->
+  <div class="section-container mt-16 md:mt-24">
+    <div class="flex flex-col sm:flex-row gap-0 rounded-2xl overflow-hidden shadow-md">
+      <a 
+        href="https://line.me/ti/p/0970177878" 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex-1 bg-rose hover:bg-rose-dark transition-colors duration-300 py-6 flex items-center justify-center gap-4 group"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-white">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+        <span class="text-white text-sm tracking-ultra-wide uppercase">立即 LINE 聯繫</span>
+      </a>
+      <a 
+        href="tel:0986132728"
+        class="flex-1 bg-brown-light hover:bg-rose-dark transition-colors duration-300 py-6 flex items-center justify-center gap-4 group"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-white">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span class="text-white text-sm tracking-ultra-wide uppercase">立即電話聯繫</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.utils.toArray('.service-card').forEach((card, i) => {
+        gsap.fromTo(card, 
+          { opacity: 0, y: 60 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: i * 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            }
+          }
+        );
+      });
+    }
+  });
+</script>

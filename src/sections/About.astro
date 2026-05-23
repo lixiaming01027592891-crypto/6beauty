@@ -1,0 +1,145 @@
+---
+---
+
+<section id="about" class="relative w-full py-24 md:py-32 bg-cream overflow-hidden">
+  <div class="section-container">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <!-- Image Side -->
+      <div class="relative about-image">
+        <div class="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
+          <img 
+            src="/images/about-owner.jpg" 
+            alt="專業團隊 - 六號美容美學創辦人"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-brown/30 to-transparent rounded-2xl"></div>
+        </div>
+        
+        <!-- Decorative Elements -->
+        <div class="absolute -bottom-6 -right-6 w-48 h-48 border border-rose/20 rounded-2xl -z-10"></div>
+        <div class="absolute -top-6 -left-6 w-32 h-32 border border-cream-deeper rounded-2xl -z-10"></div>
+        
+        <!-- Experience Badge -->
+        <div class="absolute bottom-8 left-8 bg-white/95 backdrop-blur-sm border border-cream-deeper rounded-xl px-6 py-4 shadow-lg">
+          <p class="text-rose text-3xl font-serif font-light">20+</p>
+          <p class="text-brown-muted text-xs tracking-ultra-wide uppercase">年專業經驗</p>
+        </div>
+      </div>
+      
+      <!-- Content Side -->
+      <div class="about-content">
+        <p class="text-rose text-xs tracking-ultra-wide uppercase mb-4">About Us</p>
+        <h2 class="font-serif text-brown text-4xl md:text-5xl font-light mb-6">
+          關於六號
+        </h2>
+        
+        <div class="space-y-6 text-brown-muted text-base font-light leading-relaxed">
+          <p>
+            六號美容美學位於桃園藝文特區，由擁有20年以上美容經驗的專業團隊親自創立。我們相信，每一位顧客都值得擁有獨一無二的美麗體驗。
+          </p>
+          <p>
+            從基礎的清粉刺護理到進階的煥膚療程，從舒壓的精油按摩到專業的熱蠟除毛，我們用心傾聽每一位顧客的需求，量身打造最適合的護理方案。
+          </p>
+          <p>
+            全年無休，全預約制。我們注重每一個細節，從環境的清潔到產品的選用，只為給您最安心、最舒適的美容體驗。
+          </p>
+        </div>
+        
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-6 mt-10 pt-10 border-t border-cream-deeper">
+          <div>
+            <p class="text-rose text-3xl font-serif font-light">196</p>
+            <p class="text-brown-muted text-xs tracking-ultra-wide uppercase mt-1">五星評價</p>
+          </div>
+          <div>
+            <p class="text-rose text-3xl font-serif font-light">5.0</p>
+            <p class="text-brown-muted text-xs tracking-ultra-wide uppercase mt-1">滿分評分</p>
+          </div>
+          <div>
+            <p class="text-rose text-3xl font-serif font-light">20+</p>
+            <p class="text-brown-muted text-xs tracking-ultra-wide uppercase mt-1">年經驗</p>
+          </div>
+        </div>
+        
+        <!-- CTA -->
+        <div class="mt-10">
+          <a href="#contact" class="btn-solid inline-block">認識專業團隊</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Studio Image -->
+    <div class="mt-20 about-studio">
+      <div class="relative aspect-[21/9] overflow-hidden rounded-2xl shadow-lg">
+        <img 
+          src="/images/about-studio.jpg" 
+          alt="六號美容美學工作室環境"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-brown/50 via-transparent to-brown/50 rounded-2xl"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="text-center">
+            <p class="text-white/70 text-xs tracking-ultra-wide uppercase mb-2">No.6 Aesthetics Studio</p>
+            <p class="text-white text-xl md:text-2xl font-light">東方禪意 · 靜謐美學空間</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      
+      gsap.fromTo('.about-image', 
+        { opacity: 0, x: -60 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.about-image',
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          }
+        }
+      );
+      
+      gsap.fromTo('.about-content', 
+        { opacity: 0, x: 60 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          delay: 0.2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.about-content',
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          }
+        }
+      );
+      
+      gsap.fromTo('.about-studio', 
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.about-studio',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          }
+        }
+      );
+    }
+  });
+</script>
