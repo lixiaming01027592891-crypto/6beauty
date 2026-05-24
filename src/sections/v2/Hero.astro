@@ -1,6 +1,13 @@
 ---
 ---
 <section class="v2-hero" id="hero">
+  <!-- Background Image -->
+  <div class="v2-hero-bg">
+    <img src="/images/v2-hero-bg.jpg" alt="" loading="eager" />
+  </div>
+  <!-- Gradient Overlay -->
+  <div class="v2-hero-overlay"></div>
+  <!-- Content -->
   <div class="v2-hero-inner">
     <p class="v2-hero-eyebrow">NO.6 AESTHETICS</p>
     <h1 class="v2-hero-title">六號美容美學</h1>
@@ -14,11 +21,27 @@
 <style>
   .v2-hero {
     min-height: 85vh;
-    background: var(--v2-primary-bg);
     display: flex;
     align-items: flex-end;
     position: relative;
     overflow: hidden;
+  }
+  .v2-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .v2-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .v2-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(90deg, rgba(212,165,165,0.70) 0%, rgba(212,165,165,0.35) 45%, rgba(212,165,165,0.15) 70%, rgba(212,165,165,0.35) 100%);
   }
   .v2-hero-inner {
     max-width: 1200px;
