@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import About from '../sections/About.astro';
+import Features from '../sections/Features.astro';
+import { siteConfig } from '../data/site';
+---
+
+<Layout
+  title={`關於我們｜${siteConfig.brandName}`}
+  description="認識6號美學的服務方式：充分溝通、依需求安排、重視舒適與隱私，於桃園藝文特區提供全預約制美容服務。"
+  image="/images/about-professional-care.jpg"
+>
+  <PageHero
+    eyebrow="About Us"
+    title={`關於${siteConfig.brandName}`}
+    description="我們重視每次預約前的溝通，也在意服務過程中的感受。從需求、膚況到日常習慣，逐步確認適合的安排。"
+    image="/images/about-professional-care.jpg"
+    imageAlt="美容師為顧客進行專業臉部保養"
+  />
+  <About />
+  <Features />
+</Layout>

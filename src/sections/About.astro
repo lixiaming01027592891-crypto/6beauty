@@ -1,4 +1,5 @@
 ---
+import { siteConfig } from '../data/site';
 ---
 
 <section id="about" class="relative w-full py-24 md:py-32 bg-cream overflow-hidden">
@@ -8,8 +9,8 @@
       <div class="relative about-image">
         <div class="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
           <img 
-            src="/images/about-owner.jpg" 
-            alt="專業團隊 - 六號美容美學創辦人"
+            src="/images/about-professional-care.jpg"
+            alt="美容師為顧客進行專業臉部保養的服務情境"
             class="w-full h-full object-cover"
             loading="lazy"
           />
@@ -31,12 +32,12 @@
       <div class="about-content">
         <p class="text-rose text-xs tracking-ultra-wide uppercase mb-4">About Us</p>
         <h2 class="font-serif text-brown text-4xl md:text-5xl font-light mb-6">
-          關於六號
+          關於{siteConfig.brandName}
         </h2>
         
         <div class="space-y-6 text-brown-muted text-base font-light leading-relaxed">
           <p>
-            六號美容美學位於桃園藝文特區，由擁有20年以上美容經驗的專業團隊親自創立。我們相信，每一位顧客都值得擁有獨一無二的美麗體驗。
+            {siteConfig.brandName}位於桃園藝文特區，由擁有20年以上美容經驗的專業團隊提供服務。我們相信，每一位顧客都值得擁有適合自己的美容體驗。
           </p>
           <p>
             從基礎的清粉刺護理到進階的煥膚療程，從舒壓的精油按摩到專業的熱蠟除毛，我們用心傾聽每一位顧客的需求，量身打造最適合的護理方案。
@@ -64,7 +65,7 @@
         
         <!-- CTA -->
         <div class="mt-10">
-          <a href="#contact" class="btn-solid inline-block">認識專業團隊</a>
+          <a href="/about/" class="btn-solid inline-block">了解我們的服務方式</a>
         </div>
       </div>
     </div>
@@ -73,16 +74,16 @@
     <div class="mt-20 about-studio">
       <div class="relative aspect-[21/9] overflow-hidden rounded-2xl shadow-lg">
         <img 
-          src="/images/about-studio.jpg" 
-          alt="六號美容美學工作室環境"
+          src="/images/about-care-products.jpg"
+          alt="乾淨毛巾與日常護膚用品的服務情境"
           class="w-full h-full object-cover"
           loading="lazy"
         />
         <div class="absolute inset-0 bg-gradient-to-r from-brown/50 via-transparent to-brown/50 rounded-2xl"></div>
         <div class="absolute inset-0 flex items-center justify-center">
           <div class="text-center">
-            <p class="text-white/70 text-xs tracking-ultra-wide uppercase mb-2">No.6 Aesthetics Studio</p>
-            <p class="text-white text-xl md:text-2xl font-light">東方禪意 · 靜謐美學空間</p>
+            <p class="text-white/70 text-xs tracking-ultra-wide uppercase mb-2">{siteConfig.englishName}</p>
+            <p class="text-white text-xl md:text-2xl font-light">充分溝通・細心照護・全預約制</p>
           </div>
         </div>
       </div>
@@ -91,55 +92,56 @@
 </section>
 
 <script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
   document.addEventListener('DOMContentLoaded', () => {
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger);
       
-      gsap.fromTo('.about-image', 
-        { opacity: 0, x: -60 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.about-image',
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          }
+    gsap.fromTo('.about-image',
+      { opacity: 0, x: -60 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.about-image',
+          start: 'top 80%',
+          toggleActions: 'play none none none',
         }
-      );
+      }
+    );
       
-      gsap.fromTo('.about-content', 
-        { opacity: 0, x: 60 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1,
-          delay: 0.2,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.about-content',
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          }
+    gsap.fromTo('.about-content',
+      { opacity: 0, x: 60 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        delay: 0.2,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.about-content',
+          start: 'top 80%',
+          toggleActions: 'play none none none',
         }
-      );
+      }
+    );
       
-      gsap.fromTo('.about-studio', 
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.about-studio',
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          }
+    gsap.fromTo('.about-studio',
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.about-studio',
+          start: 'top 85%',
+          toggleActions: 'play none none none',
         }
-      );
-    }
+      }
+    );
   });
 </script>

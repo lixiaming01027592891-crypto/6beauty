@@ -1,0 +1,52 @@
+---
+import { services } from '../data/site';
+
+export interface Props {
+  limit?: number;
+  featureFirst?: boolean;
+  excludeSlug?: string;
+}
+
+const { limit = services.length, featureFirst = false, excludeSlug } = Astro.props;
+const visibleServices = services.filter((service) => service.slug !== excludeSlug).slice(0, limit);
+---
+
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+  {
+    visibleServices.map((service, index) => (
+      <a
+        href={`/services/${service.slug}/`}
+        class:list={[
+          'group relative block overflow-hidden rounded-lg bg-brown shadow-sm transition-shadow duration-300 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-rose focus-visible:ring-offset-4',
+          featureFirst && index === 0 && 'md:col-span-2 lg:col-span-2',
+        ]}
+      >
+        <div class:list={['relative overflow-hidden', featureFirst && index === 0 ? 'aspect-[16/10] lg:aspect-[16/9]' : 'aspect-[3/4]']}>
+          <img
+            src={service.image}
+            alt={service.imageAlt}
+            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-brown/95 via-brown/35 to-transparent"></div>
+
+          <span class="absolute left-4 top-4 rounded-full bg-rose px-4 py-2 text-[10px] uppercase text-white tracking-ultra-wide">
+            {service.tag}
+          </span>
+
+          <div class="absolute inset-x-0 bottom-0 p-6 md:p-8">
+            <p class="mb-2 text-xs uppercase text-white/65 tracking-ultra-wide">{service.englishTitle}</p>
+            <h2 class="mb-3 text-2xl font-light text-white md:text-3xl">{service.title}</h2>
+            <p class="line-clamp-2 max-w-xl text-sm font-light leading-relaxed text-white/75">
+              {service.summary}
+            </p>
+            <span class="mt-5 inline-flex items-center gap-2 text-xs uppercase text-white tracking-ultra-wide">
+              查看服務
+              <span aria-hidden="true">→</span>
+            </span>
+          </div>
+        </div>
+      </a>
+    ))
+  }
+</div>

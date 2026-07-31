@@ -1,104 +1,135 @@
 ---
+import { navItems, siteConfig } from '../data/site';
+
+const pathname = Astro.url.pathname;
+const isHome = pathname === '/';
+const isActive = (href: string) =>
+  href === '/' ? pathname === '/' : pathname.startsWith(href);
 ---
 
-<nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500">
-  <div class="section-container flex items-center justify-between h-20">
-    <!-- Logo -->
-    <a href="#" class="flex items-center gap-3 group">
-      <div class="w-10 h-10 border border-rose/60 rounded-full flex items-center justify-center group-hover:border-rose-dark group-hover:bg-rose transition-colors duration-300">
-        <span class="text-rose font-serif text-lg group-hover:text-white transition-colors duration-300">6</span>
+<nav
+  id="navbar"
+  data-home={isHome ? 'true' : 'false'}
+  class:list={[
+    'fixed left-0 top-0 z-50 w-full transition-all duration-300',
+    !isHome && 'bg-white/95 shadow-sm backdrop-blur-lg',
+  ]}
+>
+  <div class="section-container flex h-20 items-center justify-between">
+    <a href="/" class="group flex items-center gap-3" aria-label={`${siteConfig.brandName}首頁`}>
+      <div class="flex h-10 w-10 items-center justify-center rounded-full border border-rose/60 transition-colors duration-300 group-hover:border-rose-dark group-hover:bg-rose">
+        <span class="font-serif text-lg text-rose transition-colors duration-300 group-hover:text-white">6</span>
       </div>
       <div class="flex flex-col">
-        <span class="text-brown text-sm tracking-ultra-wide font-medium group-hover:text-rose transition-colors duration-300">六號美容美學</span>
-        <span class="text-brown-muted text-[10px] tracking-ultra-wide uppercase">No.6 Aesthetics</span>
+        <span class="text-sm font-medium text-brown tracking-ultra-wide transition-colors duration-300 group-hover:text-rose">
+          {siteConfig.brandName}
+        </span>
+        <span class="text-[10px] uppercase text-brown-muted tracking-ultra-wide">{siteConfig.englishName}</span>
       </div>
     </a>
 
-    <!-- Desktop Navigation -->
-    <div class="hidden lg:flex items-center gap-10">
-      <a href="#hero" class="nav-link text-brown-light text-xs tracking-ultra-wide uppercase hover:text-rose transition-colors duration-300">首頁</a>
-      <a href="#services" class="nav-link text-brown-light text-xs tracking-ultra-wide uppercase hover:text-rose transition-colors duration-300">服務項目</a>
-      <a href="#features" class="nav-link text-brown-light text-xs tracking-ultra-wide uppercase hover:text-rose transition-colors duration-300">特色優勢</a>
-      <a href="#about" class="nav-link text-brown-light text-xs tracking-ultra-wide uppercase hover:text-rose transition-colors duration-300">關於六號</a>
-      <a href="#contact" class="nav-link text-brown-light text-xs tracking-ultra-wide uppercase hover:text-rose transition-colors duration-300">聯絡我們</a>
+    <div class="hidden items-center gap-8 lg:flex">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+            class:list={[
+              'text-xs uppercase tracking-ultra-wide transition-colors duration-300 hover:text-rose',
+              isActive(item.href) ? 'font-medium text-rose' : 'text-brown-light',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
     </div>
 
-    <!-- CTA Button -->
-    <div class="hidden lg:block">
-      <a href="#contact" class="btn-solid">立即預約</a>
-    </div>
+    <a href={siteConfig.lineUrl} target="_blank" rel="noopener noreferrer" class="btn-solid hidden lg:inline-block">
+      LINE 預約
+    </a>
 
-    <!-- Mobile Menu Button -->
-    <button id="mobile-menu-btn" class="lg:hidden bg-rose hover:bg-rose-dark text-white rounded-xl p-3 transition-all duration-300 shadow-md">
-      <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <button
+      id="mobile-menu-btn"
+      type="button"
+      class="flex h-11 w-11 items-center justify-center rounded-full bg-rose text-white shadow-md transition-colors duration-300 hover:bg-rose-dark lg:hidden"
+      aria-label="開啟主選單"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+    >
+      <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="3" y1="6" x2="21" y2="6"></line>
         <line x1="3" y1="12" x2="21" y2="12"></line>
         <line x1="3" y1="18" x2="21" y2="18"></line>
       </svg>
-      <svg id="menu-icon-close" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg id="menu-icon-close" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
     </button>
   </div>
 
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="lg:hidden hidden bg-white/98 backdrop-blur-lg absolute top-20 left-0 w-full border-t border-cream-deeper shadow-lg">
-    <div class="section-container py-8 flex flex-col gap-6">
-      <a href="#hero" class="mobile-nav-link text-brown text-sm tracking-ultra-wide uppercase">首頁</a>
-      <a href="#services" class="mobile-nav-link text-brown text-sm tracking-ultra-wide uppercase">服務項目</a>
-      <a href="#features" class="mobile-nav-link text-brown text-sm tracking-ultra-wide uppercase">特色優勢</a>
-      <a href="#about" class="mobile-nav-link text-brown text-sm tracking-ultra-wide uppercase">關於六號</a>
-      <a href="#contact" class="mobile-nav-link text-brown text-sm tracking-ultra-wide uppercase">聯絡我們</a>
-      <a href="#contact" class="btn-solid text-center mt-4">立即預約</a>
+  <div id="mobile-menu" class="absolute left-0 top-20 hidden w-full border-t border-cream-deeper bg-white/95 shadow-lg backdrop-blur-lg lg:hidden">
+    <div class="section-container flex flex-col gap-5 py-7">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+            class:list={[
+              'mobile-nav-link text-sm uppercase tracking-ultra-wide',
+              isActive(item.href) ? 'font-medium text-rose' : 'text-brown',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a href={siteConfig.lineUrl} target="_blank" rel="noopener noreferrer" class="btn-solid mt-2 text-center">
+        LINE 預約
+      </a>
     </div>
   </div>
 </nav>
 
 <script>
   const navbar = document.getElementById('navbar');
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenuButton = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-      navbar.classList.add('bg-white/95', 'backdrop-blur-lg', 'shadow-sm');
-    } else {
-      navbar.classList.remove('bg-white/95', 'backdrop-blur-lg', 'shadow-sm');
-    }
-  });
-
   const menuIconOpen = document.getElementById('menu-icon-open');
   const menuIconClose = document.getElementById('menu-icon-close');
 
-  mobileMenuBtn.addEventListener('click', () => {
-    const isHidden = mobileMenu.classList.contains('hidden');
-    if (isHidden) {
-      mobileMenu.classList.remove('hidden');
-      menuIconOpen.classList.add('hidden');
-      menuIconClose.classList.remove('hidden');
-    } else {
-      mobileMenu.classList.add('hidden');
-      menuIconOpen.classList.remove('hidden');
-      menuIconClose.classList.add('hidden');
-    }
+  const updateNavbar = () => {
+    if (!navbar || navbar.dataset.home !== 'true') return;
+    const scrolled = window.scrollY > 80;
+    navbar.classList.toggle('bg-white/95', scrolled);
+    navbar.classList.toggle('backdrop-blur-lg', scrolled);
+    navbar.classList.toggle('shadow-sm', scrolled);
+  };
+
+  const closeMenu = () => {
+    if (!mobileMenuButton || !mobileMenu || !menuIconOpen || !menuIconClose) return;
+    mobileMenu.classList.add('hidden');
+    menuIconOpen.classList.remove('hidden');
+    menuIconClose.classList.add('hidden');
+    mobileMenuButton.setAttribute('aria-expanded', 'false');
+    mobileMenuButton.setAttribute('aria-label', '開啟主選單');
+  };
+
+  window.addEventListener('scroll', updateNavbar, { passive: true });
+  updateNavbar();
+
+  mobileMenuButton?.addEventListener('click', () => {
+    if (!mobileMenu || !menuIconOpen || !menuIconClose) return;
+    const willOpen = mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden', !willOpen);
+    menuIconOpen.classList.toggle('hidden', willOpen);
+    menuIconClose.classList.toggle('hidden', !willOpen);
+    mobileMenuButton.setAttribute('aria-expanded', String(willOpen));
+    mobileMenuButton.setAttribute('aria-label', willOpen ? '關閉主選單' : '開啟主選單');
   });
 
-  document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
-      menuIconOpen.classList.remove('hidden');
-      menuIconClose.classList.add('hidden');
-    });
-  });
-
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
+  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', closeMenu);
   });
 </script>

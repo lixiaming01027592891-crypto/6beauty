@@ -1,92 +1,80 @@
 ---
+import { navItems, services, siteConfig } from '../data/site';
 ---
 
 <footer class="relative w-full bg-rose-dark">
   <div class="section-container py-16 md:py-20">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-      <!-- Logo & Description -->
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
       <div class="lg:col-span-2">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-10 h-10 border border-white/40 rounded-full flex items-center justify-center">
-            <span class="text-white font-serif text-lg">6</span>
+        <a href="/" class="mb-6 flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full border border-white/40">
+            <span class="font-serif text-lg text-white">6</span>
           </div>
           <div class="flex flex-col">
-            <span class="text-white text-sm tracking-ultra-wide font-medium">六號美容美學</span>
-            <span class="text-white/60 text-[10px] tracking-ultra-wide uppercase">No.6 Aesthetics</span>
+            <span class="text-sm font-medium text-white tracking-ultra-wide">{siteConfig.brandName}</span>
+            <span class="text-[10px] uppercase text-white/60 tracking-ultra-wide">{siteConfig.englishName}</span>
           </div>
-        </div>
-        <p class="text-white/70 text-sm font-light leading-relaxed max-w-md mb-6">
-          位於桃園藝文特區的專業美容美體工作室。專業團隊20年經驗，提供臉部護理、身體SPA、熱蠟除毛等全方位美容服務。
+        </a>
+        <p class="mb-7 max-w-md text-sm font-light leading-relaxed text-white/70">
+          位於桃園藝文特區的美容美體工作室，提供臉部護理、身體 SPA、熱蠟除毛、敏感肌保養與孕婦護理。
         </p>
-        <div class="flex gap-4">
-          <a 
-            href="https://line.me/ti/p/0970177878" 
-            target="_blank"
-            rel="noopener noreferrer"
-            class="w-10 h-10 border border-white/30 flex items-center justify-center text-white/70 hover:bg-white hover:text-rose-dark transition-all duration-300 rounded-full"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-            </svg>
+        <div class="flex flex-wrap gap-3">
+          <a href={siteConfig.lineUrl} target="_blank" rel="noopener noreferrer" class="rounded-full border border-white/30 px-5 py-2 text-xs text-white transition-colors hover:bg-white hover:text-rose-dark">
+            LINE 預約
           </a>
-          <a 
-            href="tel:0986132728"
-            class="w-10 h-10 border border-white/30 flex items-center justify-center text-white/70 hover:bg-white hover:text-rose-dark transition-all duration-300 rounded-full"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-            </svg>
+          <a href={siteConfig.phoneUrl} class="rounded-full border border-white/30 px-5 py-2 text-xs text-white transition-colors hover:bg-white hover:text-rose-dark">
+            {siteConfig.phoneDisplay}
           </a>
         </div>
       </div>
-      
-      <!-- Quick Links -->
+
       <div>
-        <h4 class="text-white text-xs tracking-ultra-wide uppercase mb-6">快速連結</h4>
+        <h2 class="mb-6 text-xs uppercase text-white tracking-ultra-wide">網站導覽</h2>
         <ul class="space-y-3">
-          <li><a href="#hero" class="text-white/60 text-sm hover:text-white transition-colors duration-300">首頁</a></li>
-          <li><a href="#services" class="text-white/60 text-sm hover:text-white transition-colors duration-300">服務項目</a></li>
-          <li><a href="#features" class="text-white/60 text-sm hover:text-white transition-colors duration-300">特色優勢</a></li>
-          <li><a href="#about" class="text-white/60 text-sm hover:text-white transition-colors duration-300">關於六號</a></li>
-          <li><a href="#contact" class="text-white/60 text-sm hover:text-white transition-colors duration-300">聯絡預約</a></li>
+          {
+            navItems.map((item) => (
+              <li>
+                <a href={item.href} class="text-sm text-white/60 transition-colors duration-300 hover:text-white">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
-      
-      <!-- Contact Info -->
+
       <div>
-        <h4 class="text-white text-xs tracking-ultra-wide uppercase mb-6">聯絡資訊</h4>
-        <ul class="space-y-4">
+        <h2 class="mb-6 text-xs uppercase text-white tracking-ultra-wide">服務與資訊</h2>
+        <ul class="space-y-3">
+          {
+            services.slice(0, 3).map((service) => (
+              <li>
+                <a href={`/services/${service.slug}/`} class="text-sm text-white/60 transition-colors duration-300 hover:text-white">
+                  {service.title}
+                </a>
+              </li>
+            ))
+          }
           <li>
-            <p class="text-white/50 text-xs tracking-ultra-wide uppercase mb-1">電話</p>
-            <a href="tel:0986132728" class="text-white/80 text-sm hover:text-white transition-colors duration-300">0986-132-728</a>
+            <a href={siteConfig.mapUrl} target="_blank" rel="noopener noreferrer" class="text-sm leading-relaxed text-white/60 transition-colors duration-300 hover:text-white">
+              {siteConfig.address}
+            </a>
           </li>
           <li>
-            <p class="text-white/50 text-xs tracking-ultra-wide uppercase mb-1">LINE</p>
-            <a href="https://line.me/ti/p/0970177878" target="_blank" rel="noopener noreferrer" class="text-white/80 text-sm hover:text-white transition-colors duration-300">0970177878</a>
-          </li>
-          <li>
-            <p class="text-white/50 text-xs tracking-ultra-wide uppercase mb-1">地址</p>
-            <a href="https://maps.google.com/?q=桃園市桃園區南平路181巷6號" target="_blank" rel="noopener noreferrer" class="text-white/80 text-sm hover:text-white transition-colors duration-300">桃園市桃園區<br/>南平路181巷6號1樓</a>
-          </li>
-          <li>
-            <p class="text-white/50 text-xs tracking-ultra-wide uppercase mb-1">營業時間</p>
-            <p class="text-white/80 text-sm">每日 09:00 - 21:00</p>
-            <p class="text-white/60 text-xs">全年無休 · 全預約制</p>
+            <p class="text-sm text-white/60">{siteConfig.hoursLabel}</p>
+            <p class="mt-1 text-xs text-white/45">{siteConfig.bookingLabel}</p>
           </li>
         </ul>
       </div>
     </div>
   </div>
-  
-  <!-- Copyright -->
+
   <div class="border-t border-white/15">
-    <div class="section-container py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-white/50 text-xs">
-        &copy; 2024 六號美容美學 No.6 Aesthetics. All Rights Reserved.
+    <div class="section-container flex flex-col items-center justify-between gap-3 py-6 md:flex-row">
+      <p class="text-xs text-white/50">
+        &copy; {new Date().getFullYear()} {siteConfig.brandName} {siteConfig.englishName}. All Rights Reserved.
       </p>
-      <p class="text-white/35 text-xs">
-        Designed with care for beauty.
-      </p>
+      <p class="text-xs text-white/35">桃園藝文特區・全預約制</p>
     </div>
   </div>
 </footer>

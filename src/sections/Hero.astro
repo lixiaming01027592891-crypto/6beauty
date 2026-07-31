@@ -1,13 +1,14 @@
 ---
 import FluidCanvas from '../components/FluidCanvas.astro';
+import { siteConfig } from '../data/site';
 ---
 
-<section id="hero" class="relative w-full h-screen overflow-hidden">
+<section id="hero" class="relative h-[calc(100svh-96px)] min-h-[480px] w-full overflow-hidden md:h-[calc(100vh-128px)] md:min-h-[560px]">
   <!-- Background Image Layer -->
   <div class="absolute inset-0 z-0">
     <img 
       src="/hero/hero-bg-new.png" 
-      alt="六號美容美學 - 專業美容護膚"
+      alt={`${siteConfig.brandName}專業美容護膚`}
       class="w-full h-full object-cover object-center"
       loading="eager"
     />
@@ -32,12 +33,12 @@ import FluidCanvas from '../components/FluidCanvas.astro';
       
       <!-- Subtitle -->
       <p class="text-rose text-xs tracking-ultra-wide uppercase mb-6 opacity-0 animate-slide-up" style="animation-delay: 0.3s; animation-fill-mode: forwards;">
-        No.6 Aesthetics &amp; Spa
+        {siteConfig.englishName}
       </p>
       
       <!-- Main Title -->
       <h1 class="hero-title font-serif text-[#3D2B1F] text-5xl md:text-7xl lg:text-8xl font-light leading-tight mb-6 opacity-0 animate-slide-up" style="animation-delay: 0.6s; animation-fill-mode: forwards; text-shadow: 0 2px 16px rgba(250,246,243,0.95), 0 0 32px rgba(250,246,243,0.7), 0 0 60px rgba(250,246,243,0.4);">
-        六號美容美學
+        {siteConfig.brandName}
       </h1>
       
       <!-- Description -->
@@ -51,8 +52,8 @@ import FluidCanvas from '../components/FluidCanvas.astro';
       
       <!-- CTA Buttons -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center opacity-0 animate-slide-up" style="animation-delay: 1.4s; animation-fill-mode: forwards;">
-        <a href="#services" class="btn-solid">探索服務</a>
-        <a href="#contact" class="border border-brown text-brown bg-transparent px-12 py-4 text-xs tracking-ultra-wide uppercase hover:bg-brown hover:text-white transition-all duration-300">立即預約</a>
+        <a href="/services/" class="btn-solid">探索服務</a>
+        <a href="/contact/" class="border border-brown text-brown bg-transparent px-12 py-4 text-xs tracking-ultra-wide uppercase hover:bg-brown hover:text-white transition-all duration-300">立即預約</a>
       </div>
     </div>
   </div>

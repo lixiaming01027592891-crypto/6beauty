@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import ServiceGrid from '../../components/ServiceGrid.astro';
+import Features from '../../sections/Features.astro';
+import { siteConfig } from '../../data/site';
+---
+
+<Layout
+  title={`服務項目｜${siteConfig.brandName}`}
+  description="查看6號美學的臉部護理、身體 SPA、熱蠟除毛、敏感肌保養與孕婦護理服務，透過 LINE 確認適合的預約內容。"
+  image="/images/service-facial-real.jpg"
+>
+  <PageHero
+    eyebrow="Services"
+    title="依需求選擇合適的美容服務"
+    description="每次服務都從溝通開始。先告訴我們在意的問題、日常習慣與方便時段，再一起確認合適的預約內容。"
+    image="/images/service-facial-real.jpg"
+    imageAlt="美容師為顧客進行臉部保養"
+  />
+
+  <section class="bg-white py-20 md:py-28">
+    <div class="section-container">
+      <div class="mb-12 max-w-2xl">
+        <p class="mb-3 text-xs uppercase text-rose tracking-ultra-wide">All Services</p>
+        <h2 class="font-serif text-3xl font-light text-brown md:text-4xl">完整服務分類</h2>
+        <p class="mt-4 text-sm leading-relaxed text-brown-muted md:text-base">
+          點選服務查看內容、適合需求與預約前提醒。實際項目與時間仍以店家確認為準。
+        </p>
+      </div>
+      <ServiceGrid />
+    </div>
+  </section>
+
+  <Features />
+
+  <section class="bg-cream py-16 md:py-20">
+    <div class="section-container flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+      <div>
+        <p class="mb-2 text-xs uppercase text-rose tracking-ultra-wide">Need Help?</p>
+        <h2 class="font-serif text-2xl font-light text-brown md:text-3xl">還不確定適合哪一項服務？</h2>
+        <p class="mt-3 text-sm text-brown-muted">先透過 LINE 說明需求，我們會協助確認預約方向。</p>
+      </div>
+      <a href={siteConfig.lineUrl} target="_blank" rel="noopener noreferrer" class="btn-solid">LINE 詢問</a>
+    </div>
+  </section>
+</Layout>

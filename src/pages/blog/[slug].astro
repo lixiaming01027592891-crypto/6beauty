@@ -1,92 +1,169 @@
 ---
-import BlogLayout from '../../layouts/BlogLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { siteConfig } from '../../data/site';
 
-// Generate all static paths from blog markdown files
 export async function getStaticPaths() {
-  const posts = await Astro.glob('../../content/blog/*.md');
-  
-  return posts.map(post => {
-    const slug = post.file.split('/').pop().replace('.md', '');
-    return {
-      params: { slug },
-      props: { post },
-    };
-  });
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
 }
 
 const { post } = Astro.props;
-const { Content } = post;
-const fm = post.frontmatter;
+const { Content } = await post.render();
 
-// Format date
-function formatDate(dateStr) {
-  const date = new Date(dateStr);
-  return date.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric' });
+function formatDate(dateString: string) {
+  return new Date(dateString).toLocaleDateString('zh-TW', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 }
+
+const articleUrl = new URL(`/blog/${post.slug}/`, Astro.site ?? siteConfig.siteUrl);
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  image: new URL(post.data.coverImage, Astro.site ?? siteConfig.siteUrl).href,
+  datePublished: post.data.publishDate,
+  mainEntityOfPage: articleUrl.href,
+  author: {
+    '@type': 'Organization',
+    name: siteConfig.brandName,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: siteConfig.brandName,
+  },
+};
 ---
 
-<BlogLayout 
-  title={fm.title} 
-  description={fm.description}
-  publishDate={fm.publishDate}
-  coverImage={fm.coverImage}
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.coverImage}
+  type="article"
+  publishDate={post.data.publishDate}
+  structuredData={structuredData}
 >
-  <!-- Article Header -->
-  <section class="pt-8 pb-12 md:pb-16 bg-cream">
-    <div class="section-container max-w-[800px]">
-      <!-- Breadcrumb -->
-      <nav class="mb-8">
-        <ol class="flex items-center gap-2 text-xs tracking-ultra-wide uppercase">
-          <li><a href="/" class="text-brown-muted hover:text-rose transition-colors">首頁</a></li>
-          <li class="text-brown-muted/40">/</li>
-          <li><a href="/blog" class="text-brown-muted hover:text-rose transition-colors">美容知識</a></li>
-          <li class="text-brown-muted/40">/</li>
-          <li class="text-rose">{fm.title}</li>
-        </ol>
+  <PageHero
+    eyebrow="Beauty Journal"
+    title={post.data.title}
+    description={post.data.description}
+    image={post.data.coverImage}
+    imageAlt={post.data.title}
+  />
+
+  <article class="bg-cream py-16 md:py-20">
+    <div class="section-container max-w-[860px]">
+      <nav class="mb-8 text-xs text-brown-muted" aria-label="麵包屑">
+        <a href="/" class="hover:text-rose">首頁</a>
+        <span class="px-2 text-brown-muted/40">/</span>
+        <a href="/blog/" class="hover:text-rose">美容知識</a>
       </nav>
 
-      <!-- Tags -->
-      <div class="flex flex-wrap gap-2 mb-4">
-        {fm.tags?.map(tag => (
-          <span class="text-rose/70 text-[10px] tracking-ultra-wide uppercase bg-rose/5 px-3 py-1 rounded-full">
-            {tag}
-          </span>
-        ))}
+      <div class="mb-8 flex flex-wrap items-center gap-3 border-b border-cream-deeper pb-8">
+        <time class="text-sm text-brown-muted" datetime={post.data.publishDate}>
+          {formatDate(post.data.publishDate)}
+        </time>
+        <span class="text-brown-muted/30">•</span>
+        <span class="text-sm text-brown-muted">{siteConfig.brandName}</span>
+        <div class="flex flex-wrap gap-2 sm:ml-auto">
+          {
+            post.data.tags.map((tag) => (
+              <span class="rounded-full bg-rose/5 px-3 py-1 text-[10px] text-rose tracking-ultra-wide">{tag}</span>
+            ))
+          }
+        </div>
       </div>
 
-      <!-- Title -->
-      <h1 class="font-serif text-brown text-3xl md:text-4xl lg:text-5xl font-light leading-tight mb-4">
-        {fm.title}
-      </h1>
-
-      <!-- Meta -->
-      <div class="flex items-center gap-4 text-brown-muted/60 text-sm mb-8">
-        <span>{formatDate(fm.publishDate)}</span>
-        <span>·</span>
-        <span>六號美容美學</span>
+      <div class="blog-article">
+        <Content />
       </div>
-
-      <!-- Article intro line -->
-      <div class="w-16 h-px bg-rose/30 mb-8"></div>
-    </div>
-  </section>
-
-  <!-- Article Content -->
-  <article class="pb-20 bg-cream">
-    <div class="section-container max-w-[800px] blog-article">
-      <Content />
     </div>
   </article>
 
-  <!-- Related CTA -->
-  <section class="py-16 bg-cream-dark border-t border-cream-deeper">
-    <div class="section-container max-w-[800px] text-center">
-      <p class="text-brown-muted text-lg font-light mb-2">喜歡這篇文章嗎？</p>
-      <p class="text-brown-muted/60 text-sm mb-8">歡迎分享給身邊的朋友，或預約體驗我們的專業服務</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/" class="btn-solid">立即預約</a>
-        <a href="/blog" class="btn-primary">查看更多文章</a>
+  <section class="border-t border-cream-deeper bg-cream-dark py-16">
+    <div class="section-container max-w-[860px] text-center">
+      <p class="mb-2 text-xs uppercase text-rose tracking-ultra-wide">Next Step</p>
+      <h2 class="font-serif text-2xl font-light text-brown md:text-3xl">需要依個人狀況確認服務？</h2>
+      <p class="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-brown-muted">
+        文章提供一般資訊，實際服務仍會依需求與當日狀況溝通安排。
+      </p>
+      <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+        <a href="/contact/" class="btn-solid">聯絡預約</a>
+        <a href="/blog/" class="btn-primary">返回文章列表</a>
       </div>
     </div>
   </section>
-</BlogLayout>
+</Layout>
+
+<style is:global>
+  .blog-article h2 {
+    margin-bottom: 1rem;
+    margin-top: 2.5rem;
+    border-bottom: 1px solid #e8d5cc;
+    padding-bottom: 0.5rem;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #4a3530;
+  }
+
+  .blog-article h3 {
+    margin-bottom: 0.75rem;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #b88072;
+  }
+
+  .blog-article p,
+  .blog-article li {
+    color: #6b5b55;
+    font-weight: 300;
+    line-height: 1.9;
+  }
+
+  .blog-article p,
+  .blog-article ul,
+  .blog-article ol {
+    margin-bottom: 1.25rem;
+  }
+
+  .blog-article ul,
+  .blog-article ol {
+    padding-left: 1.5rem;
+  }
+
+  .blog-article li {
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-article strong {
+    font-weight: 500;
+    color: #4a3530;
+  }
+
+  .blog-article blockquote {
+    margin: 2rem 0;
+    border-left: 3px solid #b88072;
+    padding-left: 1.5rem;
+    color: #6b534d;
+  }
+
+  .blog-article img {
+    margin: 2rem 0;
+    border-radius: 0.5rem;
+  }
+</style>

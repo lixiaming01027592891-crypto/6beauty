@@ -42,7 +42,7 @@ const features = [
     <div class="text-center mb-16 md:mb-24">
       <p class="text-rose text-xs tracking-ultra-wide uppercase mb-4">Why Choose Us</p>
       <h2 class="font-serif text-brown text-4xl md:text-5xl lg:text-6xl font-light mb-6">
-        六號的堅持
+        6號美學的堅持
       </h2>
       <p class="text-brown-muted text-base max-w-lg mx-auto">
         20年來，我們始終堅持對美的追求與對顧客的承諾
@@ -80,26 +80,27 @@ const features = [
 </section>
 
 <script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
   document.addEventListener('DOMContentLoaded', () => {
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
-      gsap.utils.toArray('.feature-card').forEach((card, i) => {
-        gsap.fromTo(card, 
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            delay: i * 0.15,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: card,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            }
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.feature-card').forEach((card, i) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          delay: i * 0.15,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: card as Element,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
           }
-        );
-      });
-    }
+        }
+      );
+    });
   });
 </script>

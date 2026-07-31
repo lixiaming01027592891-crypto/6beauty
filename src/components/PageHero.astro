@@ -1,0 +1,32 @@
+---
+export interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+}
+
+const { eyebrow, title, description, image, imageAlt } = Astro.props;
+---
+
+<section class="relative min-h-[46vh] md:min-h-[52vh] flex items-end overflow-hidden bg-brown">
+  <img
+    src={image}
+    alt={imageAlt}
+    class="absolute inset-0 h-full w-full object-cover"
+    loading="eager"
+  />
+  <div class="absolute inset-0 bg-gradient-to-r from-brown/90 via-brown/65 to-brown/20"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-brown/70 via-transparent to-brown/20"></div>
+
+  <div class="section-container relative z-10 w-full pb-14 pt-32 md:pb-20">
+    <p class="mb-4 text-xs uppercase text-white/70 tracking-ultra-wide">{eyebrow}</p>
+    <h1 class="max-w-3xl font-serif text-4xl font-light leading-tight text-white md:text-5xl lg:text-6xl">
+      {title}
+    </h1>
+    <p class="mt-5 max-w-2xl text-sm font-light leading-relaxed text-white/80 md:text-base">
+      {description}
+    </p>
+  </div>
+</section>

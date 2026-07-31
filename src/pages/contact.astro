@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Contact from '../sections/Contact.astro';
+import { siteConfig } from '../data/site';
+---
+
+<Layout
+  title={`聯絡預約｜${siteConfig.brandName}`}
+  description={`透過 LINE 或電話聯絡6號美學，地址為${siteConfig.address}，每日 09:00 至 21:00，全預約制。`}
+  image="/images/contact-bg.jpg"
+>
+  <PageHero
+    eyebrow="Contact"
+    title="聯絡與預約資訊"
+    description="請先透過 LINE 或電話確認服務內容與時段。Google 地圖會帶您前往正確的商家地址。"
+    image="/images/contact-bg.jpg"
+    imageAlt="美容護膚用品與放鬆空間"
+  />
+  <Contact />
+
+  <section class="bg-white py-16 md:py-20">
+    <div class="section-container">
+      <div class="overflow-hidden rounded-lg border border-cream-deeper">
+        <iframe
+          src={siteConfig.mapEmbedUrl}
+          title={`${siteConfig.businessName} Google 地圖`}
+          class="h-[360px] w-full md:h-[460px]"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</Layout>
