@@ -22,7 +22,7 @@ export const siteConfig = {
   defaultTitle: '6號美學｜桃園藝文特區美容護膚、清粉刺與熱蠟除毛',
   defaultDescription:
     '6號美學位於桃園藝文特區，提供臉部護理、身體 SPA、熱蠟除毛、敏感肌保養與孕婦護理，全預約制。',
-  siteUrl: 'https://6beauty.pages.dev',
+  siteUrl: 'https://no6beauty.net',
   phoneDisplay: '0986-132-728',
   phoneUrl: 'tel:0986132728',
   lineId: '0970177878',
