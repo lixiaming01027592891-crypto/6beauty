@@ -66,7 +66,7 @@ export const services: Service[] = [
     ],
     image: '/images/service-facial-real.jpg',
     imageAlt: '美容師為顧客進行溫和臉部保養',
-    tag: '人氣療程',
+    tag: '人氣課程',
     highlights: ['預約前先溝通膚況', '依需求安排護理步驟', '提供護理後日常保養提醒'],
     suitableFor: ['想進行日常臉部清潔保養', '在意粉刺與肌膚觸感', '希望獲得個人化護理建議'],
     note: '實際服務內容會依當日膚況調整；若正接受皮膚科治療或有明顯不適，請先告知。',
