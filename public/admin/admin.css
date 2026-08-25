@@ -97,8 +97,7 @@ button { color: inherit; }
 .brand-mark.small { width: 46px; height: 46px; margin: 0; font-size: 24px; }
 .eyebrow { margin: 0 0 8px; color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .18em; }
 .login-card h1 { margin: 0; font-family: Georgia, "Noto Serif TC", serif; font-size: 31px; font-weight: 500; letter-spacing: .04em; }
-.login-intro { margin: 15px 0 28px; color: var(--muted); font-size: 14px; line-height: 1.8; }
-.login-card > label { display: block; margin-bottom: 9px; font-size: 13px; font-weight: 700; }
+.login-card > label { display: block; margin: 28px 0 9px; font-size: 13px; font-weight: 700; }
 
 .password-row { position: relative; }
 .password-row input { width: 100%; padding-right: 70px; }
@@ -106,6 +105,7 @@ button { color: inherit; }
   position: absolute;
   top: 50%;
   right: 10px;
+  transform: translateY(-50%);
   min-height: 36px;
   padding: 0 10px;
   border: 0;
