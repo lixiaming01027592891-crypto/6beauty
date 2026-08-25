@@ -555,16 +555,14 @@
     state.imagesLoaded = true;
   }
 
-  function createStatusCard(label, value, help, online = false) {
+  function createStatusCard(label, value, online = false) {
     const card = document.createElement('div');
     card.className = `status-card${online ? ' online' : ''}`;
     const labelElement = document.createElement('span');
     labelElement.textContent = label;
     const valueElement = document.createElement('strong');
     valueElement.textContent = value;
-    const helpElement = document.createElement('small');
-    helpElement.textContent = help;
-    card.append(labelElement, valueElement, helpElement);
+    card.append(labelElement, valueElement);
     return card;
   }
 
@@ -573,16 +571,11 @@
     const payload = await api('status');
     const grid = byId('status-grid');
     grid.replaceChildren(
-      createStatusCard('正式網站', payload.siteOnline ? '正常' : '待確認', payload.siteOnline ? '目前可以正常連線' : '請稍後重新整理', payload.siteOnline),
-      createStatusCard('已上架文章', String(payload.publishedArticleCount), `全部共 ${payload.articleCount} 篇`),
-      createStatusCard('圖片位置', String(payload.imagesConfigured), '固定位置，避免誤改版型'),
-      createStatusCard('自動部署', '已連接', `${payload.branch} 分支`),
+      createStatusCard('正式網站', payload.siteOnline ? '正常' : '待確認', payload.siteOnline),
+      createStatusCard('已上架文章', String(payload.publishedArticleCount)),
+      createStatusCard('圖片位置', String(payload.imagesConfigured)),
+      createStatusCard('自動部署', '已連接'),
     );
-    const commit = payload.latestCommit;
-    byId('latest-commit').textContent = commit ? `${commit.sha.slice(0, 7)}｜${commit.message.split('\n')[0]}` : '暫無版本資料';
-    byId('latest-commit-date').textContent = commit?.date ? new Intl.DateTimeFormat('zh-TW', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(commit.date)) : '';
-    byId('repository-name').textContent = payload.repository;
-    byId('repository-branch').textContent = `正式分支：${payload.branch}`;
     state.statusLoaded = true;
   }
 

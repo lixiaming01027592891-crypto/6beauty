@@ -138,10 +138,8 @@ export const prerender = true;
             <div class="section-heading compact">
               <div>
                 <span class="section-number">02</span>
-                <h2>網站固定資料</h2>
-                <p>這些是品牌與網站識別資料，保留顯示但不開放誤改。</p>
+                <h2>網站資料預覽</h2>
               </div>
-              <span class="locked-badge">唯讀保護</span>
             </div>
             <div class="locked-grid" id="locked-grid"></div>
 
@@ -159,7 +157,6 @@ export const prerender = true;
               <div>
                 <span class="section-number">01</span>
                 <h2>文章列表</h2>
-                <p>下架文章不會出現在網站、網址或 Sitemap。</p>
               </div>
               <button class="primary-button" id="new-article-button" type="button">＋ 新增文章</button>
             </div>
@@ -257,12 +254,11 @@ export const prerender = true;
           </div>
         </section>
 
-        <section class="admin-panel" id="panel-status" data-title="網站狀態" data-description="查看目前網站、文章與最新版本資訊；本頁全部唯讀。">
+        <section class="admin-panel" id="panel-status" data-title="網站狀態" data-description="查看目前網站、文章與最新版本資訊。">
           <div class="section-heading">
             <div>
               <span class="section-number">01</span>
               <h2>網站運作摘要</h2>
-              <p>這裡只顯示狀態，不會修改任何網站內容。</p>
             </div>
             <button class="secondary-button" id="refresh-status-button" type="button">重新整理</button>
           </div>
@@ -272,13 +268,11 @@ export const prerender = true;
           <div class="content-card version-card">
             <div>
               <span>最新網站版本</span>
-              <strong id="latest-commit">讀取中…</strong>
-              <small id="latest-commit-date"></small>
+              <strong>最新</strong>
             </div>
             <div>
               <span>資料來源</span>
-              <strong id="repository-name">—</strong>
-              <small id="repository-branch">—</small>
+              <strong>最新</strong>
             </div>
           </div>
         </section>
@@ -301,15 +295,6 @@ export const prerender = true;
               <span>04</span><h2>等待網站更新</h2>
               <p>送出後系統會自動建立新版本，通常數分鐘內會顯示在正式網站。</p>
             </article>
-          </div>
-          <div class="content-card boundaries-card">
-            <h2>系統保護範圍</h2>
-            <ul>
-              <li>不能刪除頁面、服務項目或既有網站版型。</li>
-              <li>不能修改網址規則、SEO 結構、程式碼或後台權限。</li>
-              <li>文章只有「上架／下架」，不提供永久刪除。</li>
-              <li>圖片只能放入已指定的位置，無法任意新增位置。</li>
-            </ul>
           </div>
         </section>
       </main>

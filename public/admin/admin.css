@@ -299,13 +299,12 @@ button:disabled { opacity: .55; cursor: wait; transform: none !important; }
 .skeleton-card { background: linear-gradient(100deg, #fff 30%, #f1ece9 45%, #fff 60%); background-size: 220% 100%; animation: skeleton 1.3s infinite; }
 @keyframes skeleton { to { background-position-x: -220%; } }
 .status-card span { display: block; color: var(--muted); font-size: 11px; }
-.status-card strong { display: block; margin: 17px 0 6px; font-family: Georgia, serif; font-size: 29px; font-weight: 500; }
-.status-card small { color: var(--muted); font-size: 10px; }
+.status-card strong { display: block; margin: 17px 0 0; font-family: Georgia, serif; font-size: 29px; font-weight: 500; }
 .status-card.online strong { color: var(--green); }
 .version-card { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 16px; padding: 20px; }
 .version-card > div { min-width: 0; padding: 4px 12px; }
 .version-card > div + div { border-left: 1px solid var(--line); }
-.version-card span, .version-card small { display: block; color: var(--muted); font-size: 10px; }
+.version-card span { display: block; color: var(--muted); font-size: 10px; }
 .version-card strong { display: block; overflow: hidden; margin: 8px 0 5px; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
 
 .guide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
@@ -313,10 +312,6 @@ button:disabled { opacity: .55; cursor: wait; transform: none !important; }
 .guide-card > span { color: var(--accent); font-family: Georgia, serif; font-size: 12px; }
 .guide-card h2 { margin: 22px 0 9px; font-size: 17px; }
 .guide-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.75; }
-.boundaries-card { margin-top: 16px; padding: 26px; background: #fbf7f5; }
-.boundaries-card h2 { margin: 0; font-size: 16px; }
-.boundaries-card ul { margin: 15px 0 0; padding-left: 20px; color: var(--muted); font-size: 12px; line-height: 2; }
-
 .toast-region { position: fixed; right: 22px; bottom: 22px; z-index: 200; display: grid; width: min(calc(100vw - 44px), 380px); gap: 9px; }
 .toast { border: 1px solid #d8e6df; border-radius: 12px; padding: 14px 16px; background: #fff; box-shadow: var(--shadow); color: var(--green); font-size: 12px; animation: toast-in .2s ease-out; }
 .toast.error { border-color: #ecd1d1; color: var(--danger); }
