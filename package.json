@@ -1,12 +1,17 @@
 {
   "name": "app",
   "version": "1.0.0",
+  "type": "module",
   "description": "6號美學官方網站",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "cf:dev": "npm run build && wrangler pages dev ./dist",
+    "check:functions": "tsc -p functions/tsconfig.json",
+    "check": "npm run build && npm run check:functions",
+    "test": "vitest run"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +22,12 @@
     "astro": "^4.16.0",
     "gsap": "^3.15.0",
     "tailwindcss": "^3.4.19"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "^1.0.0",
+    "@cloudflare/workers-types": "^5.20260823.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.11",
+    "wrangler": "^4.125.0"
   }
 }

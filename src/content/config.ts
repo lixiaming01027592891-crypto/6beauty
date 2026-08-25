@@ -8,6 +8,7 @@ const blog = defineCollection({
     publishDate: z.string(),
     coverImage: z.string(),
     tags: z.array(z.string()).default([]),
+    status: z.enum(['published', 'unpublished']).default('published'),
   }),
 });
 

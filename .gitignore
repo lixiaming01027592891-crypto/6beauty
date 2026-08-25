@@ -7,6 +7,14 @@ dist/
 # Astro
 .astro/
 
+# Cloudflare local state and secrets
+.wrangler/
+_worker.bundle
+.dev.vars*
+.env*
+!.dev.vars.example
+!.env.example
+
 # misc
 .DS_Store
 *.log

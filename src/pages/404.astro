@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="找不到頁面"
+  description="這個頁面不存在或已經下架。"
+  noindex={true}
+>
+  <section class="flex min-h-[68vh] items-center bg-cream py-24">
+    <div class="section-container text-center">
+      <p class="mb-5 text-xs uppercase text-rose tracking-ultra-wide">404 · Page Not Found</p>
+      <h1 class="font-serif text-4xl font-light text-brown md:text-6xl">這個頁面已經不在這裡</h1>
+      <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-brown-muted">
+        網址可能輸入錯誤，或原本的美容小知識已經下架。您可以返回首頁或查看目前公開的文章。
+      </p>
+      <div class="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+        <a href="/" class="btn-solid">返回首頁</a>
+        <a href="/blog/" class="btn-primary">查看美容知識</a>
+      </div>
+    </div>
+  </section>
+</Layout>

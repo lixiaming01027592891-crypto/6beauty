@@ -11,7 +11,10 @@ export default defineConfig({
   integrations: [
     tailwind(),
     sitemap({
-      filter: (page) => !new URL(page).pathname.startsWith('/test'),
+      filter: (page) => {
+        const pathname = new URL(page).pathname;
+        return !pathname.startsWith('/test') && !pathname.startsWith('/admin');
+      },
     }),
   ],
   output: 'static',

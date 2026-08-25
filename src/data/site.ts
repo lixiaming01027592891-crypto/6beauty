@@ -1,3 +1,10 @@
+import rawSettings from './settings.json';
+import {
+  dayDefinitions,
+  deriveSiteSettings,
+  validateEditableSiteSettings,
+} from './settings';
+
 export interface Service {
   slug: string;
   title: string;
@@ -13,26 +20,36 @@ export interface Service {
   note: string;
 }
 
-const mapQuery = '6號美容美學 桃園市桃園區南平路181巷6號1樓';
+const businessName = '6號美容美學';
+const settingsValidation = validateEditableSiteSettings(rawSettings);
+
+if (!settingsValidation.ok) {
+  throw new Error(`網站基本資料格式不正確：${settingsValidation.issues.map((issue) => issue.message).join('、')}`);
+}
+
+export const editableSiteSettings = settingsValidation.value;
+const derivedSettings = deriveSiteSettings(editableSiteSettings, businessName);
 
 export const siteConfig = {
   brandName: '6號美學',
-  businessName: '6號美容美學',
+  businessName,
   englishName: 'No.6 Aesthetics',
   defaultTitle: '6號美學｜桃園藝文特區美容護膚、清粉刺與熱蠟除毛',
   defaultDescription:
     '6號美學位於桃園藝文特區，提供臉部護理、身體 SPA、熱蠟除毛、敏感肌保養與孕婦護理，全預約制。',
   siteUrl: 'https://no6beauty.net',
-  phoneDisplay: '0986-132-728',
-  phoneUrl: 'tel:0986132728',
-  lineId: '0970177878',
-  lineUrl: 'https://line.me/ti/p/0970177878',
-  address: '桃園市桃園區南平路181巷6號1樓',
-  mapUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`,
-  mapEmbedUrl: `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`,
-  hoursLabel: '每日 09:00 - 21:00',
-  bookingLabel: '全年無休・全預約制',
-} as const;
+  phoneDisplay: derivedSettings.phoneDisplay,
+  phoneUrl: derivedSettings.phoneUrl,
+  lineId: editableSiteSettings.lineId,
+  lineUrl: derivedSettings.lineUrl,
+  address: editableSiteSettings.address,
+  mapUrl: derivedSettings.mapUrl,
+  mapEmbedUrl: derivedSettings.mapEmbedUrl,
+  hoursLabel: derivedSettings.hoursLabel,
+  bookingLabel: derivedSettings.bookingLabel,
+  businessNotice: derivedSettings.businessNotice,
+  openingHoursSpecification: derivedSettings.openingHoursSpecification,
+};
 
 export const navItems = [
   { href: '/', label: '首頁' },
@@ -42,15 +59,10 @@ export const navItems = [
   { href: '/contact/', label: '聯絡預約' },
 ] as const;
 
-export const businessHours = [
-  { day: '週一', hours: '09:00 - 21:00' },
-  { day: '週二', hours: '09:00 - 21:00' },
-  { day: '週三', hours: '09:00 - 21:00' },
-  { day: '週四', hours: '09:00 - 21:00' },
-  { day: '週五', hours: '09:00 - 21:00' },
-  { day: '週六', hours: '09:00 - 21:00' },
-  { day: '週日', hours: '09:00 - 21:00' },
-] as const;
+export const businessHours = dayDefinitions.map((day) => ({
+  day: day.label,
+  hours: editableSiteSettings.businessHours[day.key],
+}));
 
 export const services: Service[] = [
   {

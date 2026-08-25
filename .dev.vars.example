@@ -1,0 +1,5 @@
+# Copy this file to .dev.vars for local Pages Functions testing.
+# Never commit real values.
+ADMIN_PASSWORD="replace-with-a-strong-local-password"
+SESSION_SECRET="replace-with-at-least-32-random-characters"
+GITHUB_TOKEN="github_pat_replace_me"

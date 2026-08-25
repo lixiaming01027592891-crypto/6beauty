@@ -1,0 +1,16 @@
+{
+  "phone": "0986132728",
+  "lineId": "0970177878",
+  "address": "桃園市桃園區南平路181巷6號1樓",
+  "businessHours": {
+    "monday": "09:00 - 21:00",
+    "tuesday": "09:00 - 21:00",
+    "wednesday": "09:00 - 21:00",
+    "thursday": "09:00 - 21:00",
+    "friday": "09:00 - 21:00",
+    "saturday": "09:00 - 21:00",
+    "sunday": "09:00 - 21:00"
+  },
+  "bookingMode": "appointment_only",
+  "businessStatus": "open"
+}

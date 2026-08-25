@@ -40,28 +40,13 @@ const businessSchema = {
   telephone: siteConfig.phoneDisplay,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '南平路181巷6號1樓',
+    streetAddress: siteConfig.address,
     addressLocality: '桃園區',
     addressRegion: '桃園市',
     postalCode: '330',
     addressCountry: 'TW',
   },
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday',
-      ],
-      opens: '09:00',
-      closes: '21:00',
-    },
-  ],
+  openingHoursSpecification: siteConfig.openingHoursSpecification,
   sameAs: [siteConfig.lineUrl, siteConfig.mapUrl],
 };
 

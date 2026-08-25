@@ -5,7 +5,7 @@ export const GET: APIRoute = ({ site }) => {
   const sitemapUrl = new URL('sitemap-index.xml', baseUrl);
 
   return new Response(
-    `User-agent: *\nAllow: /\n\nSitemap: ${sitemapUrl.href}\n`,
+    `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /api/admin/\n\nSitemap: ${sitemapUrl.href}\n`,
     {
       headers: {
         'Content-Type': 'text/plain; charset=utf-8',

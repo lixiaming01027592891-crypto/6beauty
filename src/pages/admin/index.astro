@@ -1,0 +1,324 @@
+---
+export const prerender = true;
+---
+
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="theme-color" content="#f7f3f0" />
+    <title>網站管理後台｜6號美學</title>
+    <link rel="stylesheet" href="/admin/admin.css" />
+    <script src="/admin/admin.js" defer></script>
+  </head>
+  <body>
+    <div class="login-screen" id="login-screen" aria-labelledby="login-title">
+      <form class="login-card" id="login-form">
+        <div class="brand-mark" aria-hidden="true">6</div>
+        <p class="eyebrow">NO.6 AESTHETICS</p>
+        <h1 id="login-title">網站管理後台</h1>
+        <p class="login-intro">請輸入管理密碼。登入後可更新基本資料、美容小知識與指定網站圖片。</p>
+        <label for="login-password">管理密碼</label>
+        <div class="password-row">
+          <input id="login-password" name="password" type="password" autocomplete="current-password" required />
+          <button type="button" class="text-button" id="toggle-password" aria-label="顯示密碼">顯示</button>
+        </div>
+        <p class="form-error" id="login-error" role="alert"></p>
+        <button class="primary-button full-button" type="submit">登入後台</button>
+        <a class="back-link" href="/">← 返回網站首頁</a>
+      </form>
+    </div>
+
+    <div class="admin-app" id="admin-app" hidden>
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark small" aria-hidden="true">6</div>
+          <div>
+            <strong>6號美學</strong>
+            <span>網站管理後台</span>
+          </div>
+        </div>
+
+        <nav class="side-nav" aria-label="後台功能">
+          <button class="nav-item active" type="button" data-panel="settings">
+            <span class="nav-icon" aria-hidden="true">⌂</span>
+            <span>基本資料設定</span>
+          </button>
+          <button class="nav-item" type="button" data-panel="articles">
+            <span class="nav-icon" aria-hidden="true">✦</span>
+            <span>美容小知識</span>
+          </button>
+          <button class="nav-item" type="button" data-panel="images">
+            <span class="nav-icon" aria-hidden="true">▧</span>
+            <span>網站圖片</span>
+          </button>
+          <button class="nav-item" type="button" data-panel="status">
+            <span class="nav-icon" aria-hidden="true">◉</span>
+            <span>網站狀態</span>
+          </button>
+          <button class="nav-item" type="button" data-panel="guide">
+            <span class="nav-icon" aria-hidden="true">?</span>
+            <span>操作說明</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="/" target="_blank" rel="noreferrer">開啟正式網站 ↗</a>
+          <button type="button" id="logout-button">登出</button>
+        </div>
+      </aside>
+
+      <div class="mobile-bar">
+        <button class="menu-button" id="menu-button" type="button" aria-controls="sidebar" aria-expanded="false">
+          <span aria-hidden="true">☰</span><span class="sr-only">開啟選單</span>
+        </button>
+        <strong>6號美學管理後台</strong>
+        <a href="/" target="_blank" rel="noreferrer" aria-label="開啟正式網站">↗</a>
+      </div>
+
+      <main class="admin-main">
+        <header class="page-header">
+          <div>
+            <p class="eyebrow">CONTENT CONTROL</p>
+            <h1 id="page-title">基本資料設定</h1>
+            <p id="page-description">管理網站會用到的電話、LINE、地址與營業資訊。</p>
+          </div>
+          <div class="deploy-indicator" id="deploy-indicator">
+            <span class="status-dot"></span>
+            <span>網站資料已連線</span>
+          </div>
+        </header>
+
+        <section class="admin-panel active" id="panel-settings" data-title="基本資料設定" data-description="管理網站會用到的電話、LINE、地址與營業資訊。">
+          <form id="settings-form">
+            <div class="section-heading">
+              <div>
+                <span class="section-number">01</span>
+                <h2>聯絡與營業資訊</h2>
+                <p>儲存後會同步更新網站上的聯絡按鈕與文字。</p>
+              </div>
+              <button class="primary-button" type="submit">儲存並更新網站</button>
+            </div>
+
+            <div class="content-card form-card">
+              <div class="form-grid two-columns">
+                <label class="field">
+                  <span>聯絡電話</span>
+                  <input id="setting-phone" name="phone" inputmode="tel" maxlength="12" required />
+                  <small>只需輸入數字，網站會自動排版。</small>
+                </label>
+                <label class="field">
+                  <span>LINE ID</span>
+                  <input id="setting-line" name="lineId" maxlength="50" required />
+                  <small>用於網站的 LINE 預約按鈕。</small>
+                </label>
+                <label class="field wide">
+                  <span>店家地址</span>
+                  <input id="setting-address" name="address" maxlength="120" required />
+                  <small>地圖與聯絡頁會以此地址產生連結。</small>
+                </label>
+                <label class="field">
+                  <span>預約方式</span>
+                  <select id="setting-booking" name="bookingMode"></select>
+                </label>
+                <label class="field">
+                  <span>目前營業狀態</span>
+                  <select id="setting-status" name="businessStatus"></select>
+                </label>
+              </div>
+
+              <div class="subsection-title">
+                <h3>每週營業時間</h3>
+                <p>勾選公休後，當天不會出現在搜尋引擎營業時間中。</p>
+              </div>
+              <div class="hours-list" id="hours-list"></div>
+            </div>
+
+            <div class="section-heading compact">
+              <div>
+                <span class="section-number">02</span>
+                <h2>網站固定資料</h2>
+                <p>這些是品牌與網站識別資料，保留顯示但不開放誤改。</p>
+              </div>
+              <span class="locked-badge">唯讀保護</span>
+            </div>
+            <div class="locked-grid" id="locked-grid"></div>
+
+            <div class="preview-strip" id="settings-preview">
+              <div><span>網站電話顯示</span><strong id="preview-phone">—</strong></div>
+              <div><span>營業時間摘要</span><strong id="preview-hours">—</strong></div>
+              <div><span>前台公告</span><strong id="preview-notice">—</strong></div>
+            </div>
+          </form>
+        </section>
+
+        <section class="admin-panel" id="panel-articles" data-title="美容小知識" data-description="新增、修改與上下架網站文章；版型與網址規則由系統保護。">
+          <div id="article-list-view">
+            <div class="section-heading">
+              <div>
+                <span class="section-number">01</span>
+                <h2>文章列表</h2>
+                <p>下架文章不會出現在網站、網址或 Sitemap。</p>
+              </div>
+              <button class="primary-button" id="new-article-button" type="button">＋ 新增文章</button>
+            </div>
+            <div class="content-card">
+              <div class="list-toolbar">
+                <label class="search-box">
+                  <span class="sr-only">搜尋文章</span>
+                  <input id="article-search" type="search" placeholder="搜尋文章標題" />
+                </label>
+                <span id="article-count">讀取中…</span>
+              </div>
+              <div class="article-list" id="article-list"></div>
+            </div>
+          </div>
+
+          <form id="article-editor" hidden>
+            <div class="section-heading">
+              <div>
+                <button class="back-button" id="article-back-button" type="button">← 回文章列表</button>
+                <h2 id="article-editor-title">新增美容小知識</h2>
+                <p>儲存後會建立網站文章並等待自動部署。</p>
+              </div>
+              <button class="primary-button" type="submit">儲存並送出</button>
+            </div>
+            <div class="editor-layout">
+              <div class="content-card form-card">
+                <div class="form-grid">
+                  <label class="field">
+                    <span>文章標題</span>
+                    <input id="article-title" maxlength="80" required />
+                  </label>
+                  <label class="field">
+                    <span>文章摘要</span>
+                    <textarea id="article-description" rows="3" maxlength="180" required></textarea>
+                    <small><span id="description-count">0</span> / 180</small>
+                  </label>
+                  <label class="field">
+                    <span>標籤</span>
+                    <input id="article-tags" maxlength="120" placeholder="美容小知識、臉部保養" />
+                    <small>多個標籤請用頓號、逗號或空格分開。</small>
+                  </label>
+                  <label class="field">
+                    <span>發布日期</span>
+                    <input id="article-date" type="date" required />
+                  </label>
+                </div>
+
+                <div class="field editor-field">
+                  <span>文章內容</span>
+                  <div class="editor-toolbar" aria-label="文章快速格式">
+                    <button type="button" data-format="heading">小標題</button>
+                    <button type="button" data-format="bold"><strong>粗體</strong></button>
+                    <button type="button" data-format="list">項目符號</button>
+                    <button type="button" data-format="quote">重點引用</button>
+                    <button type="button" data-format="link">加入連結</button>
+                  </div>
+                  <textarea id="article-body" rows="18" maxlength="30000" required placeholder="在這裡輸入美容小知識內容…"></textarea>
+                  <small><span id="body-count">0</span> 字</small>
+                </div>
+              </div>
+
+              <aside class="editor-side">
+                <div class="content-card cover-card">
+                  <h3>文章首圖</h3>
+                  <div class="cover-preview"><img id="article-cover-preview" src="/images/blog-1.jpg" alt="文章首圖預覽" /></div>
+                  <label class="secondary-button file-button">
+                    選擇圖片
+                    <input id="article-cover-file" type="file" accept="image/jpeg,image/png,image/webp" />
+                  </label>
+                  <small>系統會置中裁切為 1200 × 750 JPG。</small>
+                </div>
+                <div class="content-card guard-card">
+                  <span class="lock-symbol" aria-hidden="true">⌾</span>
+                  <h3>版型安全保護</h3>
+                  <p>文章網址、網站版型、SEO 結構與導覽列皆由系統管理，不會因編輯文章而被改動。</p>
+                </div>
+              </aside>
+            </div>
+          </form>
+        </section>
+
+        <section class="admin-panel" id="panel-images" data-title="網站圖片" data-description="只開放兩個固定圖片位置，系統會自動裁切成網站需要的尺寸。">
+          <div class="section-heading">
+            <div>
+              <span class="section-number">01</span>
+              <h2>固定圖片位置</h2>
+              <p>更換前可先預覽；不會新增頁面或改動網站排版。</p>
+            </div>
+            <span class="locked-badge">2 個位置</span>
+          </div>
+          <div class="image-slot-grid" id="image-slot-grid"></div>
+          <div class="content-card image-notice">
+            <strong>圖片使用原則</strong>
+            <p>建議選擇清楚、光線自然、主體位於畫面中央的照片。系統只接受圖片檔，不接受影片、PDF 或其他檔案。</p>
+          </div>
+        </section>
+
+        <section class="admin-panel" id="panel-status" data-title="網站狀態" data-description="查看目前網站、文章與最新版本資訊；本頁全部唯讀。">
+          <div class="section-heading">
+            <div>
+              <span class="section-number">01</span>
+              <h2>網站運作摘要</h2>
+              <p>這裡只顯示狀態，不會修改任何網站內容。</p>
+            </div>
+            <button class="secondary-button" id="refresh-status-button" type="button">重新整理</button>
+          </div>
+          <div class="status-grid" id="status-grid">
+            <div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div>
+          </div>
+          <div class="content-card version-card">
+            <div>
+              <span>最新網站版本</span>
+              <strong id="latest-commit">讀取中…</strong>
+              <small id="latest-commit-date"></small>
+            </div>
+            <div>
+              <span>資料來源</span>
+              <strong id="repository-name">—</strong>
+              <small id="repository-branch">—</small>
+            </div>
+          </div>
+        </section>
+
+        <section class="admin-panel" id="panel-guide" data-title="操作說明" data-description="後台只保留日常會用到的功能，以下是最短操作流程。">
+          <div class="guide-grid">
+            <article class="content-card guide-card">
+              <span>01</span><h2>修改基本資料</h2>
+              <p>更改電話、LINE、地址或營業時間後，按下「儲存並更新網站」。</p>
+            </article>
+            <article class="content-card guide-card">
+              <span>02</span><h2>發布美容文章</h2>
+              <p>新增標題、摘要、首圖與內文後送出。文章不需要另外排版。</p>
+            </article>
+            <article class="content-card guide-card">
+              <span>03</span><h2>更換網站圖片</h2>
+              <p>只需選照片、查看裁切預覽，再按下更新；原本的位置與比例不變。</p>
+            </article>
+            <article class="content-card guide-card">
+              <span>04</span><h2>等待網站更新</h2>
+              <p>送出後系統會自動建立新版本，通常數分鐘內會顯示在正式網站。</p>
+            </article>
+          </div>
+          <div class="content-card boundaries-card">
+            <h2>系統保護範圍</h2>
+            <ul>
+              <li>不能刪除頁面、服務項目或既有網站版型。</li>
+              <li>不能修改網址規則、SEO 結構、程式碼或後台權限。</li>
+              <li>文章只有「上架／下架」，不提供永久刪除。</li>
+              <li>圖片只能放入已指定的位置，無法任意新增位置。</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+    <div class="loading-overlay" id="loading-overlay" role="status" aria-live="polite" hidden>
+      <div class="spinner" aria-hidden="true"></div><span id="loading-message">處理中…</span>
+    </div>
+  </body>
+</html>
