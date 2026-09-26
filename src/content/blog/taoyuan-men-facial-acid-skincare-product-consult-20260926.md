@@ -2,7 +2,7 @@
 title: "桃園男士做臉前正在用酸類保養品：先交代頻率與皮膚反應"
 description: "做臉前若使用酸類或去角質產品，應先說明品項、頻率、最近反應與其他處置，再討論一般美容服務範圍。"
 publishDate: "2026-09-26"
-coverImage: "/images/articles/20260926/6beauty.png"
+coverImage: "/images/articles/20260926/6beauty.webp"
 tags: ["桃園男士做臉","熱蠟除毛"]
 status: "published"
 ---
